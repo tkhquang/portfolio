@@ -1,0 +1,187 @@
+$XS: 479px;
+$SM: 767px;
+$MD: 1023px;
+$XL: 1169px;
+
+@mixin Responsive($canvas) {
+  @if $canvas == XS {
+   @media only screen and (max-width: $XS) {
+     @content;
+   }
+  }
+  @else if $canvas == SM {
+   @media only screen and (max-width: $SM) {
+     @content;
+   }
+  }
+  @else if $canvas == MD {
+   @media only screen and (max-width: $MD) {
+     @content;
+   }
+  }
+  @else if $canvas == XL {
+   @media only screen and (max-width: $XL) {
+     @content;
+   }
+  }
+}
+
+.footer {
+  position: relative;
+  min-height: 100vh;
+  background-color: #222;
+  color: #ddd;
+  font-size: 0.9em;
+  line-height: 170%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #fff;
+    transition: 0.3s ease-in-out;
+    &:hover {
+      color: #47f;
+    }
+  }
+  .footer-copyright {
+    flex: 0 0 auto;
+    display: block;
+    line-height: 50px;
+    text-align: center;
+  }
+}
+
+.footer-wrapper {
+  flex: 1 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .footer-content {
+    margin: 50px auto;
+    display: grid;
+    justify-content: space-around;
+    grid-template-columns: 30% 30% 30%;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "author social nav"
+      "author social nav"
+      "author social nav";
+    justify-content: space-around;
+    @include Responsive(MD) {
+      grid-template-columns: 60% 40%;
+      grid-template-areas:
+        "author social"
+        "author social"
+        "nav nav";
+  	}
+    @include Responsive(XS) {
+      grid-template-columns: 80%;
+      grid-template-areas:
+        "author"
+        "social"
+        "nav";
+  	}
+  }
+}
+
+.author {
+  grid-area: author;
+  .author-photos {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    .author-avatar {
+      display: block;
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border: 4px solid #111;
+    }
+    .author-logo {
+      display: block;
+      max-width: 100%;
+      width: 50%;
+      height: auto;
+      filter: drop-shadow(1px 2px 1px #777);
+    }
+  }
+  .bio {
+    margin: 20px;
+    padding: 0;
+    .hire-button {
+      margin-left: 5px;
+      padding: 0;
+      border: none;
+      font-weight: bold;
+      color: #fff;
+      transition: 0.3s ease-in-out;
+      background: none;
+      cursor: pointer;
+      outline: inherit;
+      &:hover {
+        color: #47f;
+      }
+    }
+  }
+}
+
+.social-links {
+  grid-area: social;
+  list-style: none;
+  padding: 0;
+  margin: 0 20px;
+  display: inline-block;
+  li {
+    display: inline-block;
+    vertical-align: middle;
+    width: 100%;
+    margin-bottom: 1.6em;
+    p {
+      display: inline-block;
+      vertical-align: middle;
+      width: calc(100% - 45px);
+    }
+    & > a {
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 1em;
+      .social-icon {
+        font-size: 2em;
+      }
+    }
+  }
+}
+
+.bottom-nav {
+  grid-area: nav;
+  dl {
+    @include Responsive(MD) {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    @include Responsive(XS) {
+      display: flex;
+      flex-direction: column;
+    }
+    dt {
+      text-transform: uppercase;
+      line-height: 2;
+      @include Responsive(XS) {
+        margin: 5px auto;
+      }
+    }
+    dd {
+      margin-left: 0;
+      margin-bottom: 20px;
+      @include Responsive(MD) {
+        display: none;
+    	}
+    }
+  }
+}

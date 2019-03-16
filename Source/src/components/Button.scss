@@ -1,0 +1,24 @@
+.btn-nav {
+  display: inline-block;
+  padding: 10px 0;
+  width: 100%;
+  margin: 0;
+  font-size: 1.2em;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  background-color: rgb(22, 122, 175);
+  cursor: pointer;
+  transition: 0.3s all ease-in-out;
+  &:hover {
+    background-color: rgb(4, 95, 140);
+  }
+  &:focus,
+  &:active {
+    outline-offset: -1px;
+    outline: white dotted 1px !important;
+  }
+  span {
+    margin-right: 0.5em;
+  }
+}

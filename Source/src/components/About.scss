@@ -1,0 +1,65 @@
+$XS: 479px;
+$SM: 767px;
+$MD: 1023px;
+$XL: 1169px;
+
+@mixin Responsive($canvas) {
+  @if $canvas == XS {
+   @media only screen and (max-width: $XS) {
+     @content;
+   }
+  }
+  @else if $canvas == SM {
+   @media only screen and (max-width: $SM) {
+     @content;
+   }
+  }
+  @else if $canvas == MD {
+   @media only screen and (max-width: $MD) {
+     @content;
+   }
+  }
+  @else if $canvas == XL {
+   @media only screen and (max-width: $XL) {
+     @content;
+   }
+  }
+}
+
+.about {
+  line-height: 185%;
+  word-spacing: 2px;
+  margin: 50px auto;
+  width: 90%;
+  .dummy-anchor {
+    display: block;
+    height: 50px;
+    margin-top: -50px;
+    visibility: hidden;
+  }
+  .about-header {
+    margin-bottom: 50px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  .about-pic {
+    position: relative;
+    display: inline-block;
+    float: left;
+    margin-right: 20px;
+    @include Responsive(SM) {
+      display: block;
+      margin: 0;
+      text-align: center;
+      float: none;
+  	}
+    img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 15px;
+      border: 5px solid #79D;
+      cursor: zoom-in;
+    }
+  }
+}

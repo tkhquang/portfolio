@@ -1,0 +1,154 @@
+$XS: 479px;
+$SM: 767px;
+$MD: 1023px;
+$XL: 1169px;
+
+@mixin Responsive($canvas) {
+  @if $canvas == XS {
+   @media only screen and (max-width: $XS) {
+     @content;
+   }
+  }
+  @else if $canvas == SM {
+   @media only screen and (max-width: $SM) {
+     @content;
+   }
+  }
+  @else if $canvas == MD {
+   @media only screen and (max-width: $MD) {
+     @content;
+   }
+  }
+  @else if $canvas == XL {
+   @media only screen and (max-width: $XL) {
+     @content;
+   }
+  }
+}
+
+.projects {
+  margin: 76px auto;
+  .projects-header {
+    text-align: center;
+    text-transform: uppercase;
+  }
+}
+
+.project-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.project-tile {
+  display: flex;
+  justify-content: space-around;
+  margin: 50px 30px;
+  @include Responsive(MD) {
+    margin: 50px 20px;
+    flex-direction: column;
+  }
+  @include Responsive(SM) {
+    margin: 50px 10px;
+  }
+  .img-link {
+    flex: 0 0 50%;
+    margin: auto;
+    border: 5px solid #259;
+    overflow: hidden;
+    @include Responsive(MD) {
+      width: 70%;
+    }
+    @include Responsive(SM) {
+      width: 80%;
+    }
+    @include Responsive(XS) {
+      width: 90%;
+    }
+    &:hover {
+      box-shadow: 0px 2px 5px #234;
+    }
+    &:hover img {
+      transform: scale(1.2, 1.2);
+    }
+    img {
+      display: block;
+      max-width: 100%;
+      width: auto;
+      height: auto;
+      margin: auto;
+      transition: 0.5s all linear;
+    }
+  }
+  .desc {
+    flex: 1 0 50%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: space-around;
+    justify-content: space-around;
+    @include Responsive(MD) {
+      margin: auto 10%
+    }
+    .skills-use {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      overflow: hidden;
+      .html {
+        background-color: #070;
+      }
+      .css {
+        background-color: #737;
+      }
+      .scss {
+        background-color: #949;
+      }
+      .reactjs {
+        background-color: #00D;
+      }
+      .redux {
+        background-color: #D0D;
+      }
+      .jquery {
+        background-color: #44f;
+      }
+      .bootstrap {
+        background-color: #457;
+      }
+      span {
+        color: #ddd;
+        padding: 10px;
+        margin: 5px;
+        border-radius: 10px;
+        box-shadow: 0px 1px 3px #234;
+        user-select: none;
+        -ms-user-select: none;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+      }
+    }
+    .buttons {
+      a {
+        display: inline-block;
+        text-decoration: none;
+        color: #ddd;
+        background-color: #458;
+        padding: 10px;
+        margin: 20px 10px;
+        width: 100px;
+        border-radius: 10px;
+        box-shadow: 0px 1px 3px #234;
+        transition: 0.3s all ease-in-out;
+        user-select: none;
+        -ms-user-select: none;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        &:hover {
+          box-shadow: 1px 2px 5px #234;
+          background-color: #347;
+        }
+      }
+    }
+  }
+}

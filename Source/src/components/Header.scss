@@ -1,0 +1,116 @@
+@import url("https://fonts.googleapis.com/css?family=Dancing+Script");
+
+$XS: 479px;
+$SM: 767px;
+$MD: 1023px;
+$XL: 1169px;
+
+@mixin Responsive($canvas) {
+  @if $canvas == XS {
+   @media only screen and (max-width: $XS) {
+     @content;
+   }
+  }
+  @else if $canvas == SM {
+   @media only screen and (max-width: $SM) {
+     @content;
+   }
+  }
+  @else if $canvas == MD {
+   @media only screen and (max-width: $MD) {
+     @content;
+   }
+  }
+  @else if $canvas == XL {
+   @media only screen and (max-width: $XL) {
+     @content;
+   }
+  }
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  height: 50px;
+  width: 100%;
+  min-width: 400px;
+  display: flex;
+  justify-content: space-between;
+  transition: all 0.5s linear;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 2em;
+  font-family: "Dancing Script", cursive;
+  height: 50px;
+  min-width: 0px;
+  line-height: 50px;
+  padding: 0 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  @include Responsive(SM) {
+    display: none;
+  }
+  a {
+    color: #adf;
+    text-decoration: none;
+  }
+}
+
+.nav {
+  @include Responsive(SM) {
+    width: 100%;
+  }
+  .nav_list {
+    text-align: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    .nav_item {
+      display: flex;
+      margin-left: 20px;
+      margin-right: 20px;
+      a {
+        position: relative;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-left: 5px;
+        padding-right: 5px;
+        text-decoration: none;
+        color: #fff;
+        &::before {
+          content: "";
+          position: absolute;
+          bottom: 3px;
+          width: 100%;
+          opacity: 0;
+          height: 5px;
+          border-radius: 5px;
+          background-color: #49D;
+          box-shadow: 1px 2px 2px #000;
+          transform: scale(0);
+          transition: all 0.3s linear;
+        }
+        &:hover::before {
+          transform: scale(1);
+          opacity: 1;
+        }
+        &:active {
+          color: #aaa;
+          text-shadow: 1px 2px 1px #000;
+        }
+      }
+    }
+  }
+}
