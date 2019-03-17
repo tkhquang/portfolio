@@ -29,14 +29,10 @@ $XL: 1169px;
 .about {
   line-height: 185%;
   word-spacing: 2px;
-  margin: 50px auto;
+  font-size: 1.1em;
+  margin: auto;
+  padding: 50px 0;
   width: 90%;
-  .dummy-anchor {
-    display: block;
-    height: 50px;
-    margin-top: -50px;
-    visibility: hidden;
-  }
   .about-header {
     margin-bottom: 50px;
     text-align: center;

@@ -57,8 +57,10 @@ class App extends Component {
     window.addEventListener("scroll", this.handleScroll);
   }
   componentWillUnmount () {
-    this.image.onload = undefined;
-    this.image.onerror = undefined;
+    this.welcomeImg.onload = undefined;
+    this.welcomeImg.onerror = undefined;
+    this.backgroundImg.onload = undefined;
+    this.backgroundImg.onerror = undefined;
     window.removeEventListener("scroll", this.handleScroll);
   }
   render() {
@@ -66,7 +68,7 @@ class App extends Component {
       <Fragment>
         {this.state.backgroundLoaded && this.state.welcomeLoaded
           ?
-          <div className="App" onScroll={this.handleScroll}>
+          <div className="App">
             <Header scrolled={this.state.scrolled} />
             <main>
               <Switch>

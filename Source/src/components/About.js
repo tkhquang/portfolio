@@ -23,8 +23,7 @@ class About extends Component {
   }
   render() {
     return (
-      <section className="about">
-        <span id="about" className="dummy-anchor"></span>
+      <section id="about" className="about">
         <h2 className="about-header">About Aleks</h2>
         <div className="about-pic">
           <img src={AleksPNG} alt="Aleks Quang Trịnh" onClick={this.openLightBox} />
