@@ -11,7 +11,7 @@ const Header = (props) => (
           }
   >
     <div className="logo">
-      <a href="/">Aleks Quang Trịnh</a>
+      <Link to="/">Aleks Quang Trịnh</Link>
     </div>
     <nav className="nav">
       <ul className="nav_list">
