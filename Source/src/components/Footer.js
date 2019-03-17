@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Footer.scss";
 import AleksPNG from "../images/Aleks.png";
 import fePNG from "../images/felogo.png";
@@ -41,14 +42,14 @@ const Footer = () => {
                   ?
                   <p>
                     Available {month} {year}.
-                    <button
+                    <Link
+                      to="/contact/"
+                      title="Enquire about hiring Aleks"
                       className="hire-button"
-                      type="button" title="Enquire about hiring Aleks"
-                      onClick={() => window.location.href="/contact/"}
                     >
                       Hire Now
                       <FontAwesomeIcon icon={faAngleDoubleRight} />
-                    </button>
+                    </Link>
                   </p>
                   :
                   <p style={{color: "red"}}>
@@ -88,13 +89,13 @@ const Footer = () => {
           </ul>
           <nav className="bottom-nav">
             <dl>
-              <dt><a href="/">About</a></dt>
+              <dt><Link to="/">About</Link></dt>
               <dd>Learn about Aleks's background and technical skills</dd>
-              <dt><a href="/projects/">Portfolio</a></dt>
+              <dt><Link to="/projects/">Portfolio</Link></dt>
               <dd>View Aleks's web development projects</dd>
-              <dt><a href="/">Personal Blog</a></dt>
+              <dt><Link to="/">Personal Blog</Link></dt>
               <dd>Aleks's personal blog</dd>
-              <dt><a href="/contact/">Contact</a></dt>
+              <dt><Link to="/contact/">Contact</Link></dt>
               <dd>Get in touch with Aleks</dd>
             </dl>
           </nav>

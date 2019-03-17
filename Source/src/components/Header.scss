@@ -89,6 +89,9 @@ $XL: 1169px;
         padding-right: 5px;
         text-decoration: none;
         color: #fff;
+        &:hover {
+          color: #cdf;
+        }
         &::before {
           content: "";
           position: absolute;
@@ -101,6 +104,9 @@ $XL: 1169px;
           box-shadow: 1px 2px 2px #000;
           transform: scale(0);
           transition: all 0.3s linear;
+          @include Responsive(SM) {
+            display: none;
+          }
         }
         &:hover::before {
           transform: scale(1);

@@ -36,6 +36,9 @@ $XL: 1169px;
     text-align: center;
     font-style: italic;
   }
+  .submited-report {
+    text-align: center;
+  }
 }
 
 .contact-mail {
@@ -51,7 +54,8 @@ $XL: 1169px;
     "emailimput emailimput"
     "meslabel meslabel"
     "mesimput mesimput"
-    "sendbutton sendbutton";
+    "sendbutton sendbutton"
+    "recapcha recapcha";
   grid-row-gap: 20px;
   @include Responsive(MD) {
     grid-template-columns: repeat(2, 50%);
@@ -68,13 +72,25 @@ $XL: 1169px;
   .email {
     height: 40px;
     padding: 0 10px;
-    color: #ddd;
-    background-color: #48B;
+    color: #eee;
+    background-color: #48B !important;
     border: 2px solid transparent;
     box-shadow: inset 0px 0px 2px #211;
     grid-area: emailimput;
     &:focus {
       border: 2px solid #25F;
+    }
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus  {
+      border: 2px solid #25F;
+      background-color: #48B;
+      -webkit-text-fill-color: #eee;
+      -webkit-box-shadow: inset 0px 0px 2px #211;
+      transition: background-color 5000s ease-in-out 0s;
+    }
+    &::placeholder {
+      color: #7df;
     }
   }
   .mes-label {
@@ -84,7 +100,7 @@ $XL: 1169px;
   .message {
     height: 300px;
     padding: 10px;
-    color: #ddd;
+    color: #eee;
     background-color: #48B;
     border: 2px solid transparent;
     box-shadow: inset 0px 0px 2px #211;
@@ -92,6 +108,23 @@ $XL: 1169px;
     &:focus {
       border: 2px solid #25F;
     }
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover
+    &:-webkit-autofill:focus {
+      border: 2px solid #25F;
+      background-color: #48B;
+      -webkit-text-fill-color: #eee;
+      -webkit-box-shadow: inset 0px 0px 2px #211;
+      transition: background-color 5000s ease-in-out 0s;
+    }
+    &::placeholder {
+      color: #7df;
+    }
+  }
+  .recaptcha-text {
+    font-style: italic;
+    margin: auto;
+    grid-area: recapcha;
   }
   .sendBtn {
     grid-area: sendbutton;
@@ -117,6 +150,9 @@ $XL: 1169px;
       cursor: not-allowed;
       border: 2px solid transparent;
     }
+  }
+  .grecaptcha-badge {
+    visibility: hidden;
   }
 }
 

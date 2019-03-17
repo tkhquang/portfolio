@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Welcome.scss";
 import arrowDownPNG from "../images/arrow_down.png";
 
@@ -18,9 +19,9 @@ const Welcome = (props) => (
           I love building websites that<span>function</span> yet remain <span>minimalist</span>
         </p>
     </div>
-    <a href="#about" className="arrow-down">
+    <Link to="/#about" className="arrow-down">
       <img src={arrowDownPNG} alt="Down Button" />
-    </a>
+    </Link>
   </section>
 );
 
