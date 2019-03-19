@@ -36,9 +36,8 @@ class Projects extends Component {
     Object.keys(this.listIMG).forEach((imageName) => {
       this[imageName] = new Image();
       this[imageName].src = this.listIMG[imageName];
-      this[imageName].name = imageName;
-      this[imageName].onload = this.handleImageLoaded(this[imageName].name, this[imageName].src);
-      this[imageName].onerror = this.handleImageLoaded(this[imageName].name, this[imageName].src);
+      this[imageName].onload = () => this.handleImageLoaded(imageName, this[imageName].src);
+      this[imageName].onerror = () => this.handleImageLoaded(imageName, this[imageName].src);
     });
   }
   componentWillUnmount () {
@@ -48,19 +47,20 @@ class Projects extends Component {
     });
   }
   render () {
+    const isEmpty = (str) => (!str || 0 === str.length);
     const isLoaded = () => Boolean(
-      this.state.pokemonCardViewer &&
-      this.state.contactList &&
-      this.state.javascriptCalculator &&
-      this.state.pomodoroClock &&
-      this.state.drumMachine &&
-      this.state.randomQuoteMachine
+      !isEmpty(this.state.pokemonCardViewer) &&
+      !isEmpty(this.state.contactList) &&
+      !isEmpty(this.state.javascriptCalculator) &&
+      !isEmpty(this.state.pomodoroClock) &&
+      !isEmpty(this.state.drumMachine) &&
+      !isEmpty(this.state.randomQuoteMachine)
     );
     return (
       <section className="projects">
           <h2 className="projects-header">
             {
-              isLoaded
+              isLoaded()
               ?
               "Projects"
               :

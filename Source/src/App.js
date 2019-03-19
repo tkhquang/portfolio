@@ -52,8 +52,8 @@ class App extends Component {
       this[imageName] = new Image();
       this[imageName].src = this.listIMG[imageName];
       this[imageName].name = imageName;
-      this[imageName].onload = this.handleImageLoaded(this[imageName].name, this[imageName].src);
-      this[imageName].onerror = this.handleImageLoaded(this[imageName].name, this[imageName].src);
+      this[imageName].onload = () => this.handleImageLoaded(this[imageName].name, this[imageName].src);
+      this[imageName].onerror = () => this.handleImageLoaded(this[imageName].name, this[imageName].src);
     });
     window.addEventListener("scroll", this.handleScroll);
   }
@@ -65,9 +65,10 @@ class App extends Component {
     window.removeEventListener("scroll", this.handleScroll);
   }
   render() {
+    const isEmpty = (str) => (!str || 0 === str.length);
     return (
       <Fragment>
-        {this.state.backgroundJPG && this.state.welcomeJPG && this.state.AleksPNG
+        {!isEmpty(this.state.backgroundJPG) && !isEmpty(this.state.welcomeJPG) && !isEmpty(this.state.AleksPNG)
           ?
           <div className="App">
             <Header scrolled={this.state.scrolled} />
@@ -110,7 +111,7 @@ class App extends Component {
                 />
               </Switch>
             </main>
-            <Footer AleksPNG={this.AleksPNG.src} />
+            <Footer AleksPNG={this.state.AleksPNG} />
           </div>
           :
           <Loading />
