@@ -68,7 +68,7 @@ class Projects extends Component {
             }
           </h2>
           {
-            isLoaded
+            isLoaded()
             &&
             <Fragment>
               <ul className="project-list">

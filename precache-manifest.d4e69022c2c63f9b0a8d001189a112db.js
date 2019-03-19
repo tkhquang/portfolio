@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "/portfolio/static/media/contact-list.30c2558c.png"
   },
   {
-    "revision": "813fe72b79a9c150fed1",
+    "revision": "af97f6678b9d5469f4df",
     "url": "/portfolio/static/css/main.536631b6.chunk.css"
   },
   {
@@ -48,8 +48,8 @@ self.__precacheManifest = [
     "url": "/portfolio/static/media/pokemon-card-viewer.817ccaf1.png"
   },
   {
-    "revision": "813fe72b79a9c150fed1",
-    "url": "/portfolio/static/js/main.67b395d6.chunk.js"
+    "revision": "af97f6678b9d5469f4df",
+    "url": "/portfolio/static/js/main.245249ed.chunk.js"
   },
   {
     "revision": "a1914f82383f03c9f736750cf324a97d",
@@ -96,7 +96,7 @@ self.__precacheManifest = [
     "url": "/portfolio/static/css/2.2cd8fb70.chunk.css"
   },
   {
-    "revision": "b2712cad86d65fdb7b58a33ab8419f7b",
+    "revision": "6df77a329cc7cb0474f8dd569083b06c",
     "url": "/portfolio/index.html"
   }
 ];
