@@ -13,6 +13,12 @@ import Loading from "./components/Loading";
 import welcomeJPG from './images/welcome.jpg';
 import backgroundJPG from './images/background02.jpg';
 import AleksPNG from "./images/Aleks.png";
+import CSS3 from "./images/CSS3.png";
+import HTML5 from "./images/HTML5.png";
+import JS from "./images/JS.png";
+import Bootstrap from "./images/Bootstrap.png";
+import Jquery from "./images/Jquery.png";
+import ReactJS from "./images/ReactJS.png";
 
 class App extends Component {
   constructor (props) {
@@ -21,12 +27,24 @@ class App extends Component {
       welcomeJPG: "",
       backgroundJPG: "",
       AleksPNG: "",
+      CSS3: "",
+      HTML5: "",
+      JS: "",
+      Bootstrap: "",
+      Jquery: "",
+      ReactJS: "",
       scrolled: false
     };
     this.listIMG = {
       welcomeJPG,
       backgroundJPG,
-      AleksPNG
+      AleksPNG,
+      CSS3,
+      HTML5,
+      JS,
+      Bootstrap,
+      Jquery,
+      ReactJS
     };
   }
   handleImageLoaded = (image, src) => {
@@ -66,9 +84,21 @@ class App extends Component {
   }
   render() {
     const isEmpty = (str) => (!str || 0 === str.length);
+    const isLoaded = () => Boolean(
+      !isEmpty(this.state.backgroundJPG) &&
+      !isEmpty(this.state.welcomeJPG) &&
+      !isEmpty(this.state.AleksPNG) &&
+      !isEmpty(this.state.CSS3) &&
+      !isEmpty(this.state.HTML5) &&
+      !isEmpty(this.state.JS) &&
+      !isEmpty(this.state.Bootstrap) &&
+      !isEmpty(this.state.Jquery) &&
+      !isEmpty(this.state.ReactJS)
+    );
     return (
       <Fragment>
-        {!isEmpty(this.state.backgroundJPG) && !isEmpty(this.state.welcomeJPG) && !isEmpty(this.state.AleksPNG)
+        {
+          isLoaded()
           ?
           <div className="App">
             <Header scrolled={this.state.scrolled} history={this.props.history} />
@@ -78,7 +108,15 @@ class App extends Component {
                     <Fragment>
                       <Welcome welcomeJPG={this.state.welcomeJPG} />
                       <About AleksPNG={this.state.AleksPNG} />
-                      <Skills backgroundJPG={this.state.backgroundJPG} />
+                      <Skills
+                        backgroundJPG={this.state.backgroundJPG}
+                        CSS3={this.state.CSS3}
+                        HTML5={this.state.HTML5}
+                        JS={this.state.JS}
+                        Bootstrap={this.state.Bootstrap}
+                        Jquery={this.state.Jquery}
+                        ReactJS={this.state.ReactJS}
+                      />
                       <Button
                         href="/projects/"
                         title="Check Aleks's Projects"
