@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import "./Footer.scss";
 import fePNG from "../images/felogo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -25,6 +25,15 @@ const Footer = (props) => {
   const date = new Date();
   const month = months[date.getMonth()];
   const year = date.getFullYear();
+  const handleLinkClick = () => {
+    if (props.history.location.pathname === props.location.pathname) {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }
+  };
+  const replaceNeeded = (linkTo) => props.location.pathname === linkTo;
   return (
     <footer className="footer">
       <div className="footer-wrapper">
@@ -45,6 +54,8 @@ const Footer = (props) => {
                       to="/contact/"
                       title="Enquire about hiring Aleks"
                       className="hire-button"
+                      onClick={handleLinkClick}
+                      replace={replaceNeeded("/contact/")}
                     >
                       Hire Now
                       <FontAwesomeIcon icon={faAngleDoubleRight} />
@@ -88,14 +99,38 @@ const Footer = (props) => {
           </ul>
           <nav className="bottom-nav">
             <dl>
-              <dt><Link to="/">About</Link></dt>
-              <dd>Learn about Aleks's background and technical skills</dd>
-              <dt><Link to="/projects/">Portfolio</Link></dt>
-              <dd>View Aleks's web development projects</dd>
-              <dt><Link to="/">Personal Blog</Link></dt>
-              <dd>Aleks's personal blog</dd>
-              <dt><Link to="/contact/">Contact</Link></dt>
-              <dd>Get in touch with Aleks</dd>
+              <dt>
+                <Link to="/" onClick={handleLinkClick} replace={replaceNeeded("/")}>
+                  About
+                </Link>
+              </dt>
+              <dd>
+                Learn about Aleks's background and technical skills
+              </dd>
+              <dt>
+                <Link to="/projects/" onClick={handleLinkClick} replace={replaceNeeded("/projects/")}>
+                  Portfolio
+                </Link>
+              </dt>
+              <dd>
+                View Aleks's web development projects
+              </dd>
+              <dt>
+                <Link to="/" onClick={handleLinkClick} replace={replaceNeeded("/")}>
+                  Personal Blog
+                </Link>
+              </dt>
+              <dd>
+                Aleks's personal blog
+              </dd>
+              <dt>
+                <Link to="/contact/" onClick={handleLinkClick} replace={replaceNeeded("/contact/")}>
+                  Contact
+                </Link>
+              </dt>
+              <dd>
+                Get in touch with Aleks
+              </dd>
             </dl>
           </nav>
         </div>
@@ -106,4 +141,4 @@ const Footer = (props) => {
   );
 }
 
-export default Footer;
+export default withRouter(Footer);

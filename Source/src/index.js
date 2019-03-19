@@ -1,17 +1,23 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router } from "react-router-dom";
-import { ScrollContext } from "react-router-scroll-4";
+import { HashRouter } from "react-router-dom";
+import { createBrowserHistory } from "history";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
+const history = createBrowserHistory();
+
+history.listen(_ => {
+  window.scrollTo({
+    top: 0
+  });
+});
+
 ReactDOM.render((
-  <Router basename={process.env.PUBLIC_URL}>
-    <ScrollContext>
-      <App />
-    </ScrollContext>
-  </Router>
+  <HashRouter basename={process.env.PUBLIC_URL} >
+    <App history={history} />
+  </HashRouter>
 ), document.getElementById("root"));
 
 serviceWorker.unregister();

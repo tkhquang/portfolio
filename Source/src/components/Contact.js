@@ -13,38 +13,32 @@ class Contact extends Component {
     super (props);
     this.recaptchaRef = React.createRef();
     this.state = {
+      fetching: false,
       email: "",
       message: "",
       report: ""
     }
   }
-  handleEmailChange = (e) => {
+  handleInputOnChange = (e) => {
     this.setState({
-      email: e.target.value
-    });
-  }
-  handleMessageChange = (e) => {
-    this.setState({
-      message: e.target.value
+      [e.target.name]: e.target.value
     });
   }
   handleSubmit = (e) => {
     e.preventDefault();
-    // setTimeout(()=> {
-    //   this.setState({
-    //     report: ""
-    //   });
-    // }, 10000)
     this.recaptchaRef.current.execute().then((value) => {
       let formData = new FormData();
       formData.append("email", this.state.email);
       formData.append("message", this.state.message);
-      fetch("https://usebasin.com/f/8629e959c9a2",
-      {
+      this.setState({
+        fetching: true,
+      });
+      fetch("https://usebasin.com/f/8629e959c9a2", {
         body: formData,
         method: "POST"
       }).then(() => {
         this.setState({
+          fetching: false,
           email: "",
           message: "",
           report: "Success"
@@ -52,15 +46,10 @@ class Contact extends Component {
       }).catch((err) => {
         this.recaptchaRef.current.reset();
         this.setState({
+          fetching: false,
           report: "Error"
         });
       });
-    });
-  }
-  reCAPTCHAExpired = () => {
-    this.recaptchaRef.current.reset();
-    this.setState({
-      report: "Expired"
     });
   }
   reCAPTCHAErrored = () => {
@@ -68,6 +57,11 @@ class Contact extends Component {
     this.setState({
       report: "Error"
     });
+  }
+  componentDidMount () {
+    window.recaptchaOptions = {
+      removeOnUnmount: true
+    };
   }
   render () {
     return (
@@ -91,7 +85,8 @@ class Contact extends Component {
             name="email"
             placeholder="Enter your email address..."
             required
-            onChange={this.handleEmailChange}
+            onChange={this.handleInputOnChange}
+            value={this.state.email}
             style={{cursor: `url("${textCursor}"), text`}}
           />
           <label htmlFor="message" className="mes-label">Your Message: </label>
@@ -102,7 +97,8 @@ class Contact extends Component {
             placeholder="Your Message..."
             rows="4"
             required
-            onChange={this.handleMessageChange}
+            onChange={this.handleInputOnChange}
+            value={this.state.message}
             style={{cursor: `url("${textCursor}"), text`}}
           >
           </textarea>
@@ -111,10 +107,26 @@ class Contact extends Component {
             ref={this.recaptchaRef}
             size="invisible"
             sitekey="6Lew3SMUAAAAAJ82QoS7gqOTkRI_dhYrFy1f7Sqy"
-            onExpired={this.reCAPTCHAExpired}
             onErrored={this.reCAPTCHAErrored}
           />
-          <button className="sendBtn" type="submit" title="Send an Email to Aleks">Send <FontAwesomeIcon icon={faPaperPlane} /></button>
+          <button
+            className="sendBtn"
+            type="submit"
+            title="Send an Email to Aleks"
+            disabled={
+              this.state.fetching ? true : false
+            }
+          >
+            {
+              this.state.fetching
+              ?
+              "Sending..."
+              :
+              <span>
+                Send <FontAwesomeIcon icon={faPaperPlane} />
+              </span>
+            }
+          </button>
           <small className="recaptcha-text">
             This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.
           </small>
@@ -134,16 +146,9 @@ class Contact extends Component {
                     &nbsp;Something went wrong, please try sending your message again.
                   </h3>
                 :
-                  this.state.report === "Expired"
-                    ?
-                      <h3 className="submited-report" style={{color: "red"}}>
-                        <FontAwesomeIcon icon={faExclamationCircle} />
-                        &nbsp;ReCAPTCHA Token Expired, please try again.
-                      </h3>
-                    :
-                      <h3 className="submited-report">
-                        &nbsp;
-                      </h3>
+                  <h3 className="submited-report">
+                    &nbsp;
+                  </h3>
         }
         <ul className="socials-list">
           <li className="socials-circle facebook">

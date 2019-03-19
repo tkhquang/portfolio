@@ -4,8 +4,8 @@ self.__precacheManifest = [
     "url": "/portfolio/static/media/contact-list.30c2558c.png"
   },
   {
-    "revision": "af97f6678b9d5469f4df",
-    "url": "/portfolio/static/css/main.536631b6.chunk.css"
+    "revision": "b64e01759feae426729e",
+    "url": "/portfolio/static/css/main.7f916a52.chunk.css"
   },
   {
     "revision": "53ebc025fca807d4dbea",
@@ -16,8 +16,8 @@ self.__precacheManifest = [
     "url": "/portfolio/static/media/Aleks.18be3663.png"
   },
   {
-    "revision": "58fb8d0914b7d22b907a",
-    "url": "/portfolio/static/js/2.c9a70674.chunk.js"
+    "revision": "1d20c2e3b3a016406a20",
+    "url": "/portfolio/static/js/2.cc97e44b.chunk.js"
   },
   {
     "revision": "a7d106b3f2eba83127659bd4818c2647",
@@ -48,8 +48,8 @@ self.__precacheManifest = [
     "url": "/portfolio/static/media/pokemon-card-viewer.817ccaf1.png"
   },
   {
-    "revision": "af97f6678b9d5469f4df",
-    "url": "/portfolio/static/js/main.245249ed.chunk.js"
+    "revision": "b64e01759feae426729e",
+    "url": "/portfolio/static/js/main.104beb7d.chunk.js"
   },
   {
     "revision": "a1914f82383f03c9f736750cf324a97d",
@@ -92,11 +92,11 @@ self.__precacheManifest = [
     "url": "/portfolio/static/media/background02.7e288b14.jpg"
   },
   {
-    "revision": "58fb8d0914b7d22b907a",
+    "revision": "1d20c2e3b3a016406a20",
     "url": "/portfolio/static/css/2.2cd8fb70.chunk.css"
   },
   {
-    "revision": "6df77a329cc7cb0474f8dd569083b06c",
+    "revision": "7d8f140fe705aef20025fbb9e3b9b84c",
     "url": "/portfolio/index.html"
   }
 ];

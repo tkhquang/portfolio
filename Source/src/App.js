@@ -71,7 +71,7 @@ class App extends Component {
         {!isEmpty(this.state.backgroundJPG) && !isEmpty(this.state.welcomeJPG) && !isEmpty(this.state.AleksPNG)
           ?
           <div className="App">
-            <Header scrolled={this.state.scrolled} />
+            <Header scrolled={this.state.scrolled} history={this.props.history} />
             <main>
               <Switch>
                 <Route exact path="/" render={props =>
@@ -111,7 +111,7 @@ class App extends Component {
                 />
               </Switch>
             </main>
-            <Footer AleksPNG={this.state.AleksPNG} />
+            <Footer AleksPNG={this.state.AleksPNG} history={this.props.history} />
           </div>
           :
           <Loading />
