@@ -36,36 +36,37 @@ class Contact extends Component {
   }
   handleSubmit = (e) => {
     e.preventDefault();
-    this.recaptchaRef.current.execute().then((value) => {
-      let formData = new FormData();
-      formData.append("email", this.state.email);
-      formData.append("message", this.state.message);
-      this.setState({
-        fetching: true,
-      });
-      fetch("https://usebasin.com/f/8629e959c9a2", {
-        body: formData,
-        method: "POST"
-      }).then(() => {
-        this.setState({
-          fetching: false,
-          email: "",
-          message: "",
-          report: "Success"
-        });
-      }).catch((err) => {
-        this.recaptchaRef.current.reset();
-        this.setState({
-          fetching: false,
-          report: "Error"
-        });
-      });
-    });
+    this.recaptchaRef.current.execute();
   }
   reCAPTCHAErrored = () => {
     this.recaptchaRef.current.reset();
     this.setState({
       report: "Error"
+    });
+  }
+  reCAPTCHAResoved = () => {
+    let formData = new FormData();
+    formData.append("email", this.state.email);
+    formData.append("message", this.state.message);
+    this.setState({
+      fetching: true,
+    });
+    fetch("https://usebasin.com/f/8629e959c9a2", {
+      body: formData,
+      method: "POST"
+    }).then(() => {
+      this.setState({
+        fetching: false,
+        email: "",
+        message: "",
+        report: "Success"
+      });
+    }).catch((err) => {
+      this.recaptchaRef.current.reset();
+      this.setState({
+        fetching: false,
+        report: "Error"
+      });
     });
   }
   handleImageLoaded = (image, src) => {
@@ -154,6 +155,7 @@ class Contact extends Component {
                 size="invisible"
                 sitekey="6Lew3SMUAAAAAJ82QoS7gqOTkRI_dhYrFy1f7Sqy"
                 onErrored={this.reCAPTCHAErrored}
+                onChange={this.reCAPTCHAResoved}
               />
               <button
                 className="sendBtn"
