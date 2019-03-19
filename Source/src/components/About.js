@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
 import "./About.scss";
-import AleksPNG from "../images/Aleks.png";
 
 class About extends Component {
   constructor(props) {
@@ -26,10 +25,10 @@ class About extends Component {
       <section id="about" className="about">
         <h2 className="about-header">About Aleks</h2>
         <div className="about-pic">
-          <img src={AleksPNG} alt="Aleks Quang Trịnh" onClick={this.openLightBox} />
+          <img src={this.props.AleksPNG} alt="Aleks Quang Trịnh" onClick={this.openLightBox} />
           {this.state.isOpen
             && <Lightbox
-                  mainSrc={AleksPNG}
+                  mainSrc={this.props.AleksPNG}
                   onCloseRequest={this.closeLightBox}
                   imageCaption="Aleks Quang Trịnh"
                 />

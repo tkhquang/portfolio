@@ -4,12 +4,15 @@ import arrowDownPNG from "../images/arrow_down.png";
 
 const Welcome = (props) => {
   const scrollToAbout = () => {
-    window.scrollTo(0, document.getElementById("about").offsetTop);
+    window.scrollTo({
+      top: document.getElementById("about").offsetTop,
+      behavior: "smooth"
+    });
   };
   return (
     <section
       className="welcome"
-      style={{backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${props.image})`}}
+      style={{backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${props.welcomeJPG})`}}
     >
       <div className="welcome-header">
         <h2>Hello! My name is Aleks</h2>

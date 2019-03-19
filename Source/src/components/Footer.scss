@@ -31,7 +31,7 @@ $XL: 1169px;
   min-height: 100vh;
   background-color: #222;
   color: #ddd;
-  font-size: 0.9em;
+  font-size: 0.95em;
   line-height: 170%;
   display: flex;
   flex-direction: column;
@@ -78,7 +78,7 @@ $XL: 1169px;
         "nav nav";
   	}
     @include Responsive(XS) {
-      grid-template-columns: 80%;
+      grid-template-columns: 90%;
       grid-template-areas:
         "author"
         "social"
@@ -99,6 +99,7 @@ $XL: 1169px;
       width: 100px;
       height: 100px;
       object-fit: cover;
+      background-color: #222;
       border: 4px solid #111;
     }
     .author-logo {
@@ -143,7 +144,7 @@ $XL: 1169px;
     p {
       display: inline-block;
       vertical-align: middle;
-      width: calc(100% - 45px);
+      width: calc(100% - 50px);
     }
     & > a {
       display: inline-block;

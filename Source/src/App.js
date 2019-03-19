@@ -12,24 +12,26 @@ import Footer from "./components/Footer";
 import Loading from "./components/Loading";
 import welcomeJPG from './images/welcome.jpg';
 import backgroundJPG from './images/background02.jpg';
+import AleksPNG from "./images/Aleks.png";
 
 class App extends Component {
   constructor (props) {
     super (props);
     this.state = {
-      welcomeLoaded: false,
-      backgroundLoaded: false,
+      welcomeJPG: "",
+      backgroundJPG: "",
+      AleksPNG: "",
       scrolled: false
     };
+    this.listIMG = {
+      welcomeJPG,
+      backgroundJPG,
+      AleksPNG
+    };
   }
-  handleWelcomeLoaded = () => {
+  handleImageLoaded = (image, src) => {
     this.setState({
-      welcomeLoaded: true
-    });
-  }
-  handleBackgroundLoaded = () => {
-    this.setState({
-      backgroundLoaded: true
+      [image]: src
     });
   }
   handleScroll = () => {
@@ -46,27 +48,26 @@ class App extends Component {
     }
   }
   componentDidMount () {
-    this.welcomeImg = new Image();
-    this.welcomeImg.src = welcomeJPG;
-    this.welcomeImg.onload = this.handleWelcomeLoaded;
-    this.welcomeImg.onerror = this.handleWelcomeLoaded;
-    this.backgroundImg = new Image();
-    this.backgroundImg.src = backgroundJPG;
-    this.backgroundImg.onload = this.handleBackgroundLoaded;
-    this.backgroundImg.onerror = this.handleBackgroundLoaded;
+    Object.keys(this.listIMG).forEach((imageName) => {
+      this[imageName] = new Image();
+      this[imageName].src = this.listIMG[imageName];
+      this[imageName].name = imageName;
+      this[imageName].onload = this.handleImageLoaded(this[imageName].name, this[imageName].src);
+      this[imageName].onerror = this.handleImageLoaded(this[imageName].name, this[imageName].src);
+    });
     window.addEventListener("scroll", this.handleScroll);
   }
   componentWillUnmount () {
-    this.welcomeImg.onload = undefined;
-    this.welcomeImg.onerror = undefined;
-    this.backgroundImg.onload = undefined;
-    this.backgroundImg.onerror = undefined;
+    Object.keys(this.listIMG).forEach((imageName) => {
+      this[imageName].onload = undefined;
+      this[imageName].onerror = undefined;
+    });
     window.removeEventListener("scroll", this.handleScroll);
   }
   render() {
     return (
       <Fragment>
-        {this.state.backgroundLoaded && this.state.welcomeLoaded
+        {this.state.backgroundJPG && this.state.welcomeJPG && this.state.AleksPNG
           ?
           <div className="App">
             <Header scrolled={this.state.scrolled} />
@@ -74,9 +75,9 @@ class App extends Component {
               <Switch>
                 <Route exact path="/" render={props =>
                     <Fragment>
-                      <Welcome image={this.welcomeImg.src} />
-                      <About />
-                      <Skills image={this.backgroundImg.src} />
+                      <Welcome welcomeJPG={this.state.welcomeJPG} />
+                      <About AleksPNG={this.state.AleksPNG} />
+                      <Skills backgroundJPG={this.state.backgroundJPG} />
                       <Button
                         href="/projects/"
                         title="Check Aleks's Projects"
@@ -109,7 +110,7 @@ class App extends Component {
                 />
               </Switch>
             </main>
-            <Footer />
+            <Footer AleksPNG={this.AleksPNG.src} />
           </div>
           :
           <Loading />

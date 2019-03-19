@@ -11,7 +11,7 @@ import ReactJS from "../images/ReactJS.png";
 const Skills = (props) => (
   <section
     className="skills"
-    style={{backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${props.image})`}}
+    style={{backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${props.backgroundJPG})`}}
   >
     <h2 className="skills-header">Skills</h2>
     <ul className="skills-list">

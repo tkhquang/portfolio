@@ -28,6 +28,7 @@ $XL: 1169px;
 
 .projects {
   margin: 76px auto;
+  min-height: 100vh;
   .projects-header {
     text-align: center;
     text-transform: uppercase;
@@ -77,6 +78,8 @@ $XL: 1169px;
       width: auto;
       height: auto;
       margin: auto;
+      background-color: #368;
+      color: #4df;
       transition: 0.5s all linear;
     }
   }

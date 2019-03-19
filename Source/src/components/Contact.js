@@ -4,6 +4,7 @@ import "./Contact.scss";
 import githubPNG from "../images/github.png";
 import facebookPNG from "../images/facebook.png";
 import linkedinPNG from "../images/linkedin.png";
+import textCursor from "../images/text-cursor.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faPaperPlane, faCheckCircle, faExclamationCircle  } from "@fortawesome/free-solid-svg-icons";
 
@@ -91,6 +92,7 @@ class Contact extends Component {
             placeholder="Enter your email address..."
             required
             onChange={this.handleEmailChange}
+            style={{cursor: `url("${textCursor}"), text`}}
           />
           <label htmlFor="message" className="mes-label">Your Message: </label>
           <textarea
@@ -101,6 +103,7 @@ class Contact extends Component {
             rows="4"
             required
             onChange={this.handleMessageChange}
+            style={{cursor: `url("${textCursor}"), text`}}
           >
           </textarea>
           <ReCAPTCHA

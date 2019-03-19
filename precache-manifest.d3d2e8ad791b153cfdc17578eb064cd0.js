@@ -1,27 +1,23 @@
 self.__precacheManifest = [
   {
-    "revision": "817ccaf106eec0bb4101bb3cd11604d1",
-    "url": "/portfolio/static/media/pokemon-card-viewer.817ccaf1.png"
+    "revision": "30c2558c39ef2380286dd76b0adc99a9",
+    "url": "/portfolio/static/media/contact-list.30c2558c.png"
   },
   {
-    "revision": "9aa0c4bcf8b6b104685e",
-    "url": "/portfolio/static/css/main.11cc6ae5.chunk.css"
+    "revision": "6547774a01a5894f31b0",
+    "url": "/portfolio/static/css/main.536631b6.chunk.css"
   },
   {
     "revision": "53ebc025fca807d4dbea",
     "url": "/portfolio/static/js/runtime~main.f308c8e6.js"
   },
   {
-    "revision": "7e288b14202b75bbcb82344b03440744",
-    "url": "/portfolio/static/media/background02.7e288b14.jpg"
-  },
-  {
-    "revision": "c6df4c6929afbce35b2e",
-    "url": "/portfolio/static/js/2.123ad3ba.chunk.js"
-  },
-  {
     "revision": "18be366382b2236176bf62b3d17ed3fc",
     "url": "/portfolio/static/media/Aleks.18be3663.png"
+  },
+  {
+    "revision": "58fb8d0914b7d22b907a",
+    "url": "/portfolio/static/js/2.c9a70674.chunk.js"
   },
   {
     "revision": "a7d106b3f2eba83127659bd4818c2647",
@@ -48,12 +44,12 @@ self.__precacheManifest = [
     "url": "/portfolio/static/media/ReactJS.fc7a4972.png"
   },
   {
-    "revision": "9aa0c4bcf8b6b104685e",
-    "url": "/portfolio/static/js/main.4c9a7e95.chunk.js"
+    "revision": "817ccaf106eec0bb4101bb3cd11604d1",
+    "url": "/portfolio/static/media/pokemon-card-viewer.817ccaf1.png"
   },
   {
-    "revision": "30c2558c39ef2380286dd76b0adc99a9",
-    "url": "/portfolio/static/media/contact-list.30c2558c.png"
+    "revision": "6547774a01a5894f31b0",
+    "url": "/portfolio/static/js/main.b392f7d4.chunk.js"
   },
   {
     "revision": "a1914f82383f03c9f736750cf324a97d",
@@ -92,11 +88,15 @@ self.__precacheManifest = [
     "url": "/portfolio/static/media/welcome.b7274535.jpg"
   },
   {
-    "revision": "c6df4c6929afbce35b2e",
+    "revision": "7e288b14202b75bbcb82344b03440744",
+    "url": "/portfolio/static/media/background02.7e288b14.jpg"
+  },
+  {
+    "revision": "58fb8d0914b7d22b907a",
     "url": "/portfolio/static/css/2.2cd8fb70.chunk.css"
   },
   {
-    "revision": "c3d3109e00b698f00e29ecc20906360f",
+    "revision": "f4e320eccb581c79b5b1f5ec4b35dfc6",
     "url": "/portfolio/index.html"
   }
 ];
