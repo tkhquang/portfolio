@@ -15,7 +15,7 @@ history.listen(_ => {
 });
 
 ReactDOM.render((
-  <HashRouter basename={process.env.PUBLIC_URL} >
+  <HashRouter>
     <App history={history} />
   </HashRouter>
 ), document.getElementById("root"));
