@@ -1,6 +1,5 @@
 import React from "react";
 import "./Welcome.scss";
-import arrowDownPNG from "../images/arrow_down.png";
 
 const Welcome = (props) => {
   const scrollToAbout = () => {
@@ -26,7 +25,7 @@ const Welcome = (props) => {
           </p>
       </div>
       <div onClick={scrollToAbout} className="arrow-down">
-        <img src={arrowDownPNG} alt="Down Button" />
+        <img src={props.arrowDownPNG} alt="Down Button" />
       </div>
     </section>
   );

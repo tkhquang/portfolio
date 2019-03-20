@@ -9,7 +9,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  min-width: 400px;
+  min-width: 300px;
   background-image: linear-gradient(to bottom, #aad, #ddf);
   color: #234;
 }
@@ -18,9 +18,4 @@ body {
 *::before,
 *::after {
   box-sizing: border-box;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
 }

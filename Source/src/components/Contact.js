@@ -1,12 +1,26 @@
 import React, { Component, Fragment } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import "./Contact.scss";
+//== <Component
+import PageImageLoaded from "../HOCs/PageImageLoaded";
+import Loading from "./Loading";
+//== Component>
+//== <Media
 import githubPNG from "../images/github.png";
 import facebookPNG from "../images/facebook.png";
 import linkedinPNG from "../images/linkedin.png";
 import textCursor from "../images/text-cursor.png";
+//== Media>
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faPaperPlane, faCheckCircle, faExclamationCircle  } from "@fortawesome/free-solid-svg-icons";
+
+const imageList = {
+  githubPNG,
+  facebookPNG,
+  linkedinPNG,
+  textCursor
+};
 
 class Contact extends Component {
   constructor (props) {
@@ -16,18 +30,8 @@ class Contact extends Component {
       fetching: false,
       email: "",
       message: "",
-      report: "",
-      githubPNG: "",
-      facebookPNG: "",
-      linkedinPNG: "",
-      textCursor: ""
+      report: ""
     }
-    this.listIMG = {
-      githubPNG,
-      facebookPNG,
-      linkedinPNG,
-      textCursor
-    };
   }
   handleInputOnChange = (e) => {
     this.setState({
@@ -42,6 +46,12 @@ class Contact extends Component {
     this.recaptchaRef.current.reset();
     this.setState({
       report: "Error"
+    });
+  }
+  reCAPTCHAExpired = () => {
+    this.recaptchaRef.current.reset();
+    this.setState({
+      report: "Expired"
     });
   }
   reCAPTCHAResoved = () => {
@@ -69,41 +79,17 @@ class Contact extends Component {
       });
     });
   }
-  handleImageLoaded = (image, src) => {
-    this.setState({
-      [image]: src
-    });
-  }
   componentDidMount () {
-    Object.keys(this.listIMG).forEach((imageName) => {
-      this[imageName] = new Image();
-      this[imageName].src = this.listIMG[imageName];
-      this[imageName].onload = () => this.handleImageLoaded(imageName, this[imageName].src);
-      this[imageName].onerror = () => this.handleImageLoaded(imageName, this[imageName].src);
-    });
     window.recaptchaOptions = {
       removeOnUnmount: true
     };
   }
-  componentWillUnmount () {
-    Object.keys(this.listIMG).forEach((imageName) => {
-      this[imageName].onload = undefined;
-      this[imageName].onerror = undefined;
-    });
-  }
   render () {
-    const isEmpty = (str) => (!str || 0 === str.length);
-    const isLoaded = () => Boolean(
-      !isEmpty(this.state.githubPNG) &&
-      !isEmpty(this.state.facebookPNG) &&
-      !isEmpty(this.state.linkedinPNG) &&
-      !isEmpty(this.state.textCursor)
-    );
     return (
       <section className="contact">
         <h2 className="contact-header">
           {
-            isLoaded()
+            this.props.loaded
             ?
             "Contact"
             :
@@ -111,8 +97,8 @@ class Contact extends Component {
           }
         </h2>
         {
-          isLoaded()
-          &&
+          this.props.loaded
+          ?
           <Fragment>
             <h3 className="contact-lead">Interested in working with me? You can reach out to me via...</h3>
             <form
@@ -155,6 +141,7 @@ class Contact extends Component {
                 size="invisible"
                 sitekey="6Lew3SMUAAAAAJ82QoS7gqOTkRI_dhYrFy1f7Sqy"
                 onErrored={this.reCAPTCHAErrored}
+                onExpired={this.reCAPTCHAExpired}
                 onChange={this.reCAPTCHAResoved}
               />
               <button
@@ -194,9 +181,16 @@ class Contact extends Component {
                         &nbsp;Something went wrong, please try sending your message again.
                       </h3>
                     :
-                      <h3 className="submited-report">
-                        &nbsp;
-                      </h3>
+                      this.state.report === "Expired"
+                      ?
+                        <h3 className="submited-report" style={{color: "red"}}>
+                          <FontAwesomeIcon icon={faExclamationCircle} />
+                          &nbsp;ReCAPTCHA Token Expired, please try again.
+                        </h3>
+                      :
+                        <h3 className="submited-report">
+                          &nbsp;
+                        </h3>
             }
             <ul className="socials-list">
               <li className="socials-circle facebook">
@@ -272,10 +266,12 @@ class Contact extends Component {
               </a>
             </small>
           </Fragment>
+          :
+          <Loading />
         }
       </section>
     );
   }
 }
 
-export default Contact;
+export default PageImageLoaded(Contact, imageList);

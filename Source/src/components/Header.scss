@@ -1,39 +1,12 @@
 @import url("https://fonts.googleapis.com/css?family=Dancing+Script");
-
-$XS: 479px;
-$SM: 767px;
-$MD: 1023px;
-$XL: 1169px;
-
-@mixin Responsive($canvas) {
-  @if $canvas == XS {
-   @media only screen and (max-width: $XS) {
-     @content;
-   }
-  }
-  @else if $canvas == SM {
-   @media only screen and (max-width: $SM) {
-     @content;
-   }
-  }
-  @else if $canvas == MD {
-   @media only screen and (max-width: $MD) {
-     @content;
-   }
-  }
-  @else if $canvas == XL {
-   @media only screen and (max-width: $XL) {
-     @content;
-   }
-  }
-}
+@import "../styles/mixins";
 
 .header {
   position: fixed;
   top: 0;
   height: 50px;
   width: 100%;
-  min-width: 400px;
+  min-width: 300px;
   display: flex;
   justify-content: space-between;
   transition: background-color 0.3s ease;
@@ -49,11 +22,8 @@ $XL: 1169px;
   padding: 0 10px;
   white-space: nowrap;
   overflow: hidden;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
   cursor: pointer;
+  @include no-select;
   @include Responsive(SM) {
     display: none;
   }
@@ -79,6 +49,9 @@ $XL: 1169px;
       display: flex;
       margin-left: 20px;
       margin-right: 20px;
+      @include Responsive(SM) {
+        margin: 0;
+      }
       a {
         position: relative;
         height: 100%;

@@ -1,3 +1,5 @@
+@import "../styles/mixins";
+
 .skills {
   clear: left;
   color: #ddd;
@@ -7,6 +9,18 @@
   -webkit-clip-path: polygon(0 0, 0% 100%, 100% 100%, 100% 0, 53% 0, 50% 3%, 47% 0);
   clip-path: polygon(0 0, 0% 100%, 100% 100%, 100% 0, 53% 0, 50% 3%, 47% 0);
   overflow: hidden;
+  @include Responsive(MD) {
+    -webkit-clip-path: polygon(0 0, 0% 100%, 100% 100%, 100% 0, 54% 0, 50% 3%, 46% 0);
+    clip-path: polygon(0 0, 0% 100%, 100% 100%, 100% 0, 54% 0, 50% 3%, 46% 0);
+  }
+  @include Responsive(SM) {
+    -webkit-clip-path: polygon(0 0, 0% 100%, 100% 100%, 100% 0, 56% 0, 50% 3%, 45% 0);
+    clip-path: polygon(0 0, 0% 100%, 100% 100%, 100% 0, 56% 0, 50% 3%, 45% 0);
+  }
+  @include Responsive(XS) {
+    -webkit-clip-path: polygon(0 0, 0% 100%, 100% 100%, 100% 0, 57% 0, 50% 3%, 43% 0);
+    clip-path: polygon(0 0, 0% 100%, 100% 100%, 100% 0, 57% 0, 50% 3%, 43% 0);
+  }
 }
 
 .skills-header {
@@ -32,8 +46,12 @@
     align-items: center;
     img {
       height: 90px;
-      max-width: 100%;
+      max-height: 100%;
+      width: auto;
       margin: auto;
+      @include Responsive(XS) {
+        height: 60px;
+      }
     }
     span {
       line-height: 3em;

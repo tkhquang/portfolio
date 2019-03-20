@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { Switch, Route } from "react-router-dom";
 import "./App.css";
+//== <Component
 import Header from "./components/Header";
 import Welcome from "./components/Welcome";
 import About from "./components/About";
@@ -9,8 +10,12 @@ import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 import Button from "./components/Button";
 import Footer from "./components/Footer";
-import Loading from "./components/Loading";
+import PageLoading from "./components/PageLoading";
+import PageImageLoaded from "./HOCs/PageImageLoaded";
+//== Component>
+//== <Media
 import welcomeJPG from './images/welcome.jpg';
+import arrowDownPNG from "./images/arrow_down.png";
 import backgroundJPG from './images/background02.jpg';
 import AleksPNG from "./images/Aleks.png";
 import CSS3 from "./images/CSS3.png";
@@ -19,38 +24,27 @@ import JS from "./images/JS.png";
 import Bootstrap from "./images/Bootstrap.png";
 import Jquery from "./images/Jquery.png";
 import ReactJS from "./images/ReactJS.png";
+//== Media>
+
+const imageList = {
+  welcomeJPG,
+  arrowDownPNG,
+  backgroundJPG,
+  AleksPNG,
+  CSS3,
+  HTML5,
+  JS,
+  Bootstrap,
+  Jquery,
+  ReactJS
+}
 
 class App extends Component {
   constructor (props) {
     super (props);
     this.state = {
-      welcomeJPG: "",
-      backgroundJPG: "",
-      AleksPNG: "",
-      CSS3: "",
-      HTML5: "",
-      JS: "",
-      Bootstrap: "",
-      Jquery: "",
-      ReactJS: "",
       scrolled: false
     };
-    this.listIMG = {
-      welcomeJPG,
-      backgroundJPG,
-      AleksPNG,
-      CSS3,
-      HTML5,
-      JS,
-      Bootstrap,
-      Jquery,
-      ReactJS
-    };
-  }
-  handleImageLoaded = (image, src) => {
-    this.setState({
-      [image]: src
-    });
   }
   handleScroll = () => {
     const isScrolled = Boolean(document.body.scrollTop > 50 || document.documentElement.scrollTop > 50);
@@ -66,39 +60,16 @@ class App extends Component {
     }
   }
   componentDidMount () {
-    Object.keys(this.listIMG).forEach((imageName) => {
-      this[imageName] = new Image();
-      this[imageName].src = this.listIMG[imageName];
-      this[imageName].name = imageName;
-      this[imageName].onload = () => this.handleImageLoaded(this[imageName].name, this[imageName].src);
-      this[imageName].onerror = () => this.handleImageLoaded(this[imageName].name, this[imageName].src);
-    });
     window.addEventListener("scroll", this.handleScroll);
   }
   componentWillUnmount () {
-    Object.keys(this.listIMG).forEach((imageName) => {
-      this[imageName].onload = undefined;
-      this[imageName].onerror = undefined;
-    });
     window.removeEventListener("scroll", this.handleScroll);
   }
   render() {
-    const isEmpty = (str) => (!str || 0 === str.length);
-    const isLoaded = () => Boolean(
-      !isEmpty(this.state.backgroundJPG) &&
-      !isEmpty(this.state.welcomeJPG) &&
-      !isEmpty(this.state.AleksPNG) &&
-      !isEmpty(this.state.CSS3) &&
-      !isEmpty(this.state.HTML5) &&
-      !isEmpty(this.state.JS) &&
-      !isEmpty(this.state.Bootstrap) &&
-      !isEmpty(this.state.Jquery) &&
-      !isEmpty(this.state.ReactJS)
-    );
     return (
       <Fragment>
         {
-          isLoaded()
+          this.props.loaded
           ?
           <div className="App">
             <Header scrolled={this.state.scrolled} history={this.props.history} />
@@ -106,16 +77,21 @@ class App extends Component {
               <Switch>
                 <Route exact path="/" render={props =>
                     <Fragment>
-                      <Welcome welcomeJPG={this.state.welcomeJPG} />
-                      <About AleksPNG={this.state.AleksPNG} />
+                      <Welcome
+                        welcomeJPG={welcomeJPG}
+                        arrowDownPNG={arrowDownPNG}
+                      />
+                      <About
+                        AleksPNG={AleksPNG}
+                      />
                       <Skills
-                        backgroundJPG={this.state.backgroundJPG}
-                        CSS3={this.state.CSS3}
-                        HTML5={this.state.HTML5}
-                        JS={this.state.JS}
-                        Bootstrap={this.state.Bootstrap}
-                        Jquery={this.state.Jquery}
-                        ReactJS={this.state.ReactJS}
+                        backgroundJPG={backgroundJPG}
+                        CSS3={CSS3}
+                        HTML5={HTML5}
+                        JS={JS}
+                        Bootstrap={Bootstrap}
+                        Jquery={Jquery}
+                        ReactJS={ReactJS}
                       />
                       <Button
                         href="/projects/"
@@ -149,14 +125,17 @@ class App extends Component {
                 />
               </Switch>
             </main>
-            <Footer AleksPNG={this.state.AleksPNG} history={this.props.history} />
+            <Footer
+              AleksPNG={AleksPNG}
+              history={this.props.history}
+            />
           </div>
           :
-          <Loading />
+          <PageLoading />
         }
       </Fragment>
     );
   }
 }
 
-export default App;
+export default PageImageLoaded(App, imageList);

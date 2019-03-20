@@ -1,4 +1,6 @@
-@keyframes blink {
+@import "../styles/mixins";
+
+@include keyframes(blink) {
   0% {
     border-right-color: rgba(255, 255, 255, 0.75);
   }
@@ -59,7 +61,7 @@
         border-right: 2px solid rgba(255, 255, 255, 0.75);
         white-space: nowrap;
         padding: 1px 5px;
-        animation: blink 1s infinite;
+        @include animation("blink 1s infinite");
       }
       &:last-of-type {
         font-size: 1.2em;
