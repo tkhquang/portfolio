@@ -43,7 +43,6 @@ class App extends Component {
   constructor (props) {
     super (props);
     this.state = {
-      loading: true,
       scrolled: false
     };
   }
@@ -61,9 +60,6 @@ class App extends Component {
     }
   }
   componentDidMount () {
-    this.setState({
-      loading: false
-    });
     window.addEventListener("scroll", this.handleScroll);
   }
   componentWillUnmount () {
@@ -73,8 +69,7 @@ class App extends Component {
     return (
       <Fragment>
         {
-          this.props.loadedCheck(imageList, this.props.images)
-          && !this.state.loading
+          this.props.loadedCheck(imageList, this.props.imageLoadedState)
           ?
           <div className="App">
             <Header scrolled={this.state.scrolled} history={this.props.history} />
@@ -83,20 +78,20 @@ class App extends Component {
                 <Route exact path="/" render={props =>
                     <Fragment>
                       <Welcome
-                        welcomeJPG={this.props.images.welcomeJPG}
-                        arrowDownPNG={this.props.images.arrowDownPNG}
+                        welcomeJPG={this.props.imageLoadedState.welcomeJPG}
+                        arrowDownPNG={this.props.imageLoadedState.arrowDownPNG}
                       />
                       <About
-                        AleksPNG={this.props.images.AleksPNG}
+                        AleksPNG={this.props.imageLoadedState.AleksPNG}
                       />
                       <Skills
-                        backgroundJPG={this.props.images.backgroundJPG}
-                        CSS3={this.props.images.CSS3}
-                        HTML5={this.props.images.HTML5}
-                        JS={this.props.images.JS}
-                        Bootstrap={this.props.images.Bootstrap}
-                        Jquery={this.props.images.Jquery}
-                        ReactJS={this.props.images.ReactJS}
+                        backgroundJPG={this.props.imageLoadedState.backgroundJPG}
+                        CSS3={this.props.imageLoadedState.CSS3}
+                        HTML5={this.props.imageLoadedState.HTML5}
+                        JS={this.props.imageLoadedState.JS}
+                        Bootstrap={this.props.imageLoadedState.Bootstrap}
+                        Jquery={this.props.imageLoadedState.Jquery}
+                        ReactJS={this.props.imageLoadedState.ReactJS}
                       />
                       <Button
                         href="/projects/"
@@ -131,7 +126,7 @@ class App extends Component {
               </Switch>
             </main>
             <Footer
-              AleksPNG={this.props.images.AleksPNG}
+              AleksPNG={this.props.imageLoadedState.AleksPNG}
               history={this.props.history}
             />
           </div>

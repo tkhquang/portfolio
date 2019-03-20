@@ -11,7 +11,11 @@ const Welcome = (props) => {
   return (
     <section
       className="welcome"
-      style={{backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${props.welcomeJPG})`}}
+      style={
+        {
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${props.welcomeJPG})`
+        }
+      }
     >
       <div className="welcome-header">
         <h2>Hello! My name is Aleks</h2>
