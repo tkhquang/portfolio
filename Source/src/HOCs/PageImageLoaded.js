@@ -17,6 +17,15 @@ const PageImageLoaded = (WrappedComponent, imageList) => {
         [image]: src
       });
     }
+    checkLoaded = (imageList, objList) => {
+      const isEmpty = (str) => (!str || 0 === str.length);
+      const checkList = [];
+      Object.keys(imageList).forEach((imageName) => {
+        checkList.push(!isEmpty(objList[imageName]));
+      });
+      const condiCheck = (condi, value) => condi.every((config) => config === value);
+      return Boolean(condiCheck(checkList, true));
+    }
     componentDidMount () {
       Object.keys(this.listIMG).forEach((imageName) => {
         this[imageName] = new Image();
@@ -33,16 +42,7 @@ const PageImageLoaded = (WrappedComponent, imageList) => {
       });
     }
     render() {
-      const isLoaded = () => {
-        const isEmpty = (str) => (!str || 0 === str.length);
-        const checkList = [];
-        Object.keys(this.listIMG).forEach((imageName) => {
-          checkList.push(!isEmpty(this.state[imageName]));
-        });
-        const condiCheck = (condi, value) => condi.some((config) => config === value);
-        return Boolean(condiCheck(checkList, true));
-      }
-      return <WrappedComponent {...this.props } loaded={isLoaded()} />
+      return <WrappedComponent {...this.props } loadedCheck={this.checkLoaded} images={this.state} />
     }
   };
 }

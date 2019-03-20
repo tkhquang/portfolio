@@ -27,6 +27,7 @@ class Contact extends Component {
     super (props);
     this.recaptchaRef = React.createRef();
     this.state = {
+      loading: true,
       fetching: false,
       email: "",
       message: "",
@@ -80,6 +81,9 @@ class Contact extends Component {
     });
   }
   componentDidMount () {
+    this.setState({
+      loading: false
+    });
     window.recaptchaOptions = {
       removeOnUnmount: true
     };
@@ -89,7 +93,8 @@ class Contact extends Component {
       <section className="contact">
         <h2 className="contact-header">
           {
-            this.props.loaded
+            this.props.loadedCheck(imageList, this.props.images)
+            && !this.state.loading
             ?
             "Contact"
             :
@@ -97,7 +102,8 @@ class Contact extends Component {
           }
         </h2>
         {
-          this.props.loaded
+          this.props.loadedCheck(imageList, this.props.images)
+          && !this.state.loading
           ?
           <Fragment>
             <h3 className="contact-lead">Interested in working with me? You can reach out to me via...</h3>
@@ -120,7 +126,7 @@ class Contact extends Component {
                 required
                 onChange={this.handleInputOnChange}
                 value={this.state.email}
-                style={{cursor: `url("${textCursor}"), text`}}
+                style={{cursor: `url("${this.props.images.textCursor}"), text`}}
               />
               <label htmlFor="message" className="mes-label">Your Message: </label>
               <textarea
@@ -200,7 +206,7 @@ class Contact extends Component {
                     <div className="outer-outer-ring"></div>
                     <div className="circle">
                       <div className="front">
-                        <img className="front-logo" src={facebookPNG} alt="FACEBOOK" />
+                        <img className="front-logo" src={this.props.images.facebookPNG} alt="FACEBOOK" />
                       </div>
                       <div className="back">
                         <span>Facebook</span>
@@ -216,7 +222,7 @@ class Contact extends Component {
                     <div className="outer-outer-ring"></div>
                     <div className="circle">
                       <div className="front">
-                        <img className="front-logo" src={githubPNG} alt="GITHUB" />
+                        <img className="front-logo" src={this.props.images.githubPNG} alt="GITHUB" />
                       </div>
                       <div className="back">
                         <span>Github</span>
@@ -232,7 +238,7 @@ class Contact extends Component {
                     <div className="outer-outer-ring"></div>
                     <div className="circle">
                       <div className="front">
-                        <img className="front-logo" src={linkedinPNG} alt="LINKEDIN" />
+                        <img className="front-logo" src={this.props.images.linkedinPNG} alt="LINKEDIN" />
                       </div>
                       <div className="back">
                         <span>LinkedIn</span>

@@ -43,6 +43,7 @@ class App extends Component {
   constructor (props) {
     super (props);
     this.state = {
+      loading: true,
       scrolled: false
     };
   }
@@ -60,6 +61,9 @@ class App extends Component {
     }
   }
   componentDidMount () {
+    this.setState({
+      loading: false
+    });
     window.addEventListener("scroll", this.handleScroll);
   }
   componentWillUnmount () {
@@ -69,7 +73,8 @@ class App extends Component {
     return (
       <Fragment>
         {
-          this.props.loaded
+          this.props.loadedCheck(imageList, this.props.images)
+          && !this.state.loading
           ?
           <div className="App">
             <Header scrolled={this.state.scrolled} history={this.props.history} />
@@ -78,20 +83,20 @@ class App extends Component {
                 <Route exact path="/" render={props =>
                     <Fragment>
                       <Welcome
-                        welcomeJPG={welcomeJPG}
-                        arrowDownPNG={arrowDownPNG}
+                        welcomeJPG={this.props.images.welcomeJPG}
+                        arrowDownPNG={this.props.images.arrowDownPNG}
                       />
                       <About
-                        AleksPNG={AleksPNG}
+                        AleksPNG={this.props.images.AleksPNG}
                       />
                       <Skills
-                        backgroundJPG={backgroundJPG}
-                        CSS3={CSS3}
-                        HTML5={HTML5}
-                        JS={JS}
-                        Bootstrap={Bootstrap}
-                        Jquery={Jquery}
-                        ReactJS={ReactJS}
+                        backgroundJPG={this.props.images.backgroundJPG}
+                        CSS3={this.props.images.CSS3}
+                        HTML5={this.props.images.HTML5}
+                        JS={this.props.images.JS}
+                        Bootstrap={this.props.images.Bootstrap}
+                        Jquery={this.props.images.Jquery}
+                        ReactJS={this.props.images.ReactJS}
                       />
                       <Button
                         href="/projects/"
@@ -126,7 +131,7 @@ class App extends Component {
               </Switch>
             </main>
             <Footer
-              AleksPNG={AleksPNG}
+              AleksPNG={this.props.images.AleksPNG}
               history={this.props.history}
             />
           </div>
