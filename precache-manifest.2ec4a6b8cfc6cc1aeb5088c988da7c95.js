@@ -4,8 +4,8 @@ self.__precacheManifest = [
     "url": "/portfolio/static/media/linkedin.34c68c57.png"
   },
   {
-    "revision": "dbbde64827e365b444a7",
-    "url": "/portfolio/static/css/main.4611df1c.chunk.css"
+    "revision": "b5361fe3229bed190fff",
+    "url": "/portfolio/static/css/main.e2601914.chunk.css"
   },
   {
     "revision": "53ebc025fca807d4dbea",
@@ -16,8 +16,8 @@ self.__precacheManifest = [
     "url": "/portfolio/static/media/ReactJS.fc7a4972.png"
   },
   {
-    "revision": "3db21ebf9959ac6b6c61",
-    "url": "/portfolio/static/js/2.9c662c95.chunk.js"
+    "revision": "aaa96cfe7562fce543c8",
+    "url": "/portfolio/static/js/2.526092d7.chunk.js"
   },
   {
     "revision": "817ccaf106eec0bb4101bb3cd11604d1",
@@ -48,12 +48,8 @@ self.__precacheManifest = [
     "url": "/portfolio/static/media/github.da957304.png"
   },
   {
-    "revision": "dbbde64827e365b444a7",
-    "url": "/portfolio/static/js/main.7f4b2a2e.chunk.js"
-  },
-  {
-    "revision": "c9fcedbaaf387906b9f003c216307dd9",
-    "url": "/portfolio/static/media/felogo.c9fcedba.png"
+    "revision": "b5361fe3229bed190fff",
+    "url": "/portfolio/static/js/main.52c73961.chunk.js"
   },
   {
     "revision": "28c836624b2702d57174cdd6645245a2",
@@ -70,6 +66,10 @@ self.__precacheManifest = [
   {
     "revision": "18be366382b2236176bf62b3d17ed3fc",
     "url": "/portfolio/static/media/Aleks.18be3663.png"
+  },
+  {
+    "revision": "c9fcedbaaf387906b9f003c216307dd9",
+    "url": "/portfolio/static/media/felogo.c9fcedba.png"
   },
   {
     "revision": "a7d106b3f2eba83127659bd4818c2647",
@@ -92,11 +92,11 @@ self.__precacheManifest = [
     "url": "/portfolio/static/media/Jquery.b3c5133f.png"
   },
   {
-    "revision": "3db21ebf9959ac6b6c61",
+    "revision": "aaa96cfe7562fce543c8",
     "url": "/portfolio/static/css/2.2cd8fb70.chunk.css"
   },
   {
-    "revision": "bc70abfab1628c088f7d05fc8c1385b0",
+    "revision": "9a7fb49edd1a87e6f8a5f5b42db1540a",
     "url": "/portfolio/index.html"
   }
 ];

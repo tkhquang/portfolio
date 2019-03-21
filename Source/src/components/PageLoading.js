@@ -4,7 +4,7 @@ import "./PageLoading.css";
 
 const PageLoading = () => (
   <div className="page-loading">
-    <img src={loadingSVG} alt="Loading..." />
+    <img src={loadingSVG} alt="LOADING..." />
   </div>
 );
 

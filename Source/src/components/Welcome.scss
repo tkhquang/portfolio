@@ -12,12 +12,11 @@
 .welcome {
   position: relative;
   color: #ddd;
-  height: 100vh;
-  min-height: 400px;
+  min-height: 100vh;
   width: 100%;
   background: #234 center center no-repeat;
-  background-size: 100% 100%;
-  padding: 2em;
+  background-size: cover;
+  padding: 76px 2em 100px 2em;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -32,6 +31,9 @@
     font-size: 1.7em;
     color: #adf;
     text-shadow: 3px 4px 2px #000;
+    @include Responsive(XS) {
+      font-size: 1.4em;
+    }
   }
 }
 
@@ -49,12 +51,18 @@
     text-transform: uppercase;
     background-color: rgba(0, 0, 0, 0.6);
     padding: 5px 10px;
+    @include Responsive(XS) {
+      font-size: 1.1em;
+    }
   }
   .bottom {
     margin: 10px auto;
     display: block;
     font-style: italic;
     font-size: 1.1em;
+    @include Responsive(XS) {
+      font-size: 1em;
+    }
     span {
       &:first-of-type {
         background-color: rgba(21, 117, 44, 0.5);

@@ -1,7 +1,6 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import "./Footer.scss";
-import fePNG from "../images/felogo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDoubleRight } from "@fortawesome/free-solid-svg-icons";
 import { faFacebook, faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
@@ -41,7 +40,7 @@ const Footer = (props) => {
           <div className="author">
             <div className="author-photos">
               <img className="author-avatar" src={props.AleksPNG} alt="Aleks" />
-              <img className="author-logo" src={fePNG} alt="" />
+              <img className="author-logo" src={props.fePNG} alt="" />
             </div>
             <div className="bio">
                 <p className="bio-info">Highly motivated, self-starting developer with a good understanding of HTML, CSS, JavaScript and modern JS libraries such as ReactJS, Redux, jQuery,... seeking to launch a career building web applications and services.</p>

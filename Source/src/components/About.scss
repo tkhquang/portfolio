@@ -2,13 +2,16 @@
 
 .about {
   line-height: 185%;
-  word-spacing: 2px;
+  word-spacing: 1px;
   font-size: 1.1em;
   margin: auto;
   padding: 50px 0;
   width: 90%;
+  @include Responsive(XS) {
+    line-height: 175%;
+  }
   .about-header {
-    margin-bottom: 50px;
+    margin: 0 0 50px 0;
     text-align: center;
     text-transform: uppercase;
   }

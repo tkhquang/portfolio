@@ -196,6 +196,7 @@
   width: 150px;
 	height: 150px;
 	background-color: rgba(0,0,0,0);
+  will-change: transform;
   &:hover .circle {
     transform: rotate3d(45, 45, 0, 180deg);
   }

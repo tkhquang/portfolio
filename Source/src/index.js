@@ -16,7 +16,7 @@ history.listen(_ => {
 
 ReactDOM.render((
   <HashRouter>
-    <App history={history} />
+    <App />
   </HashRouter>
 ), document.getElementById("root"));
 

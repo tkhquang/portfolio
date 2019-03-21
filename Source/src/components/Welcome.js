@@ -25,7 +25,7 @@ const Welcome = (props) => {
             I am a Front-End Developer
           </p>
           <p className="bottom">
-            I love building websites that <span>function</span> yet remain <span>minimalist</span>
+            I love building websites that <span>{"function"}</span> yet remain <span>minimalist</span>
           </p>
       </div>
       <div onClick={scrollToAbout} className="arrow-down">

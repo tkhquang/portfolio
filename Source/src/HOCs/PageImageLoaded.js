@@ -1,16 +1,14 @@
 import React, { Component } from "react";
 
-const PageImageLoaded = (WrappedComponent, imageList) => class extends Component {
+const PageImageLoaded = (WrappedComponent, imgObj) => class extends Component {
   constructor (props) {
     super (props);
-    this.state= {
-      loading: true
-    };
-    Object.keys(imageList).forEach((imageName) => {
-      this.state[imageName] = "";
+    this.state= {};
+    Object.keys(imgObj).forEach((imgName) => {
+      this.state[imgName] = "";
     });
-    this.listIMG = {
-      ...imageList
+    this.imgObj = {
+      ...imgObj
     };
   }
   handleImageLoaded = (image, src) => {
@@ -18,35 +16,37 @@ const PageImageLoaded = (WrappedComponent, imageList) => class extends Component
       [image]: src
     });
   }
-  checkLoaded = (imageList, state) => {
+  isPageImgLoaded = (imgObj) => {
     const isEmpty = (str) => (!str || 0 === str.length);
     const checkList = [];
-    Object.keys(imageList).forEach((imageName) => {
-      checkList.push(!isEmpty(state[imageName]));
+    Object.keys(imgObj).forEach((imgName) => {
+      checkList.push(!isEmpty(this.state[imgName]));
     });
     const condiCheck = (condi, value) => condi.every((config) => config === value);
-    return Boolean(condiCheck(checkList, true) && !state.loading);
+    return Boolean(condiCheck(checkList, true));
   }
   componentDidMount () {
-    this.setState({
-      loading: false
-    });
-    Object.keys(this.listIMG).forEach((imageName) => {
-      this[imageName] = new Image();
-      this[imageName].src = this.listIMG[imageName];
-      this[imageName].name = imageName;
-      this[imageName].onload = () => this.handleImageLoaded(this[imageName].name, this[imageName].src);
-      this[imageName].onerror = () => this.handleImageLoaded(this[imageName].name, this[imageName].src);
+    Object.keys(this.imgObj).forEach((imgName) => {
+      this[imgName] = new Image();
+      this[imgName].onload = () => this.handleImageLoaded(imgName, this.imgObj[imgName]);
+      this[imgName].onerror = () => this.handleImageLoaded(imgName, this.imgObj[imgName]);
+      this[imgName].src = this.imgObj[imgName];
     });
   }
   componentWillUnmount () {
-    Object.keys(this.listIMG).forEach((imageName) => {
-      this[imageName].onload = undefined;
-      this[imageName].onerror = undefined;
+    Object.keys(this.imgObj).forEach((imgName) => {
+      this[imgName].onload = undefined;
+      this[imgName].onerror = undefined;
     });
   }
   render() {
-    return <WrappedComponent {...this.props } loadedCheck={this.checkLoaded} imageLoadedState={this.state} />
+    return (
+      <WrappedComponent
+        {...this.props }
+        isPageImgLoaded={this.isPageImgLoaded}
+        loadedImgObj={this.state}
+      />
+    );
   }
 };
 

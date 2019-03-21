@@ -11,11 +11,10 @@ import facebookPNG from "../images/facebook.png";
 import linkedinPNG from "../images/linkedin.png";
 import textCursor from "../images/text-cursor.png";
 //== Media>
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faPaperPlane, faCheckCircle, faExclamationCircle  } from "@fortawesome/free-solid-svg-icons";
 
-const imageList = {
+const imgObj = {
   githubPNG,
   facebookPNG,
   linkedinPNG,
@@ -85,11 +84,12 @@ class Contact extends Component {
     };
   }
   render () {
+    const loadedImgObj = this.props.loadedImgObj;
     return (
       <section className="contact">
         <h2 className="contact-header">
           {
-            this.props.loadedCheck(imageList, this.props.imageLoadedState)
+            this.props.isPageImgLoaded(imgObj)
             ?
             "Contact"
             :
@@ -97,7 +97,7 @@ class Contact extends Component {
           }
         </h2>
         {
-          this.props.loadedCheck(imageList, this.props.imageLoadedState)
+          this.props.isPageImgLoaded(imgObj)
           ?
           <Fragment>
             <h3 className="contact-lead">Interested in working with me? You can reach out to me via...</h3>
@@ -120,7 +120,7 @@ class Contact extends Component {
                 required
                 onChange={this.handleInputOnChange}
                 value={this.state.email}
-                style={{cursor: `url("${this.props.imageLoadedState.textCursor}"), text`}}
+                style={{cursor: `url("${loadedImgObj.textCursor}"), text`}}
               />
               <label htmlFor="message" className="mes-label">Your Message: </label>
               <textarea
@@ -200,7 +200,7 @@ class Contact extends Component {
                     <div className="outer-outer-ring"></div>
                     <div className="circle">
                       <div className="front">
-                        <img className="front-logo" src={this.props.imageLoadedState.facebookPNG} alt="FACEBOOK" />
+                        <img className="front-logo" src={loadedImgObj.facebookPNG} alt="FACEBOOK" />
                       </div>
                       <div className="back">
                         <span>Facebook</span>
@@ -216,7 +216,7 @@ class Contact extends Component {
                     <div className="outer-outer-ring"></div>
                     <div className="circle">
                       <div className="front">
-                        <img className="front-logo" src={this.props.imageLoadedState.githubPNG} alt="GITHUB" />
+                        <img className="front-logo" src={loadedImgObj.githubPNG} alt="GITHUB" />
                       </div>
                       <div className="back">
                         <span>Github</span>
@@ -232,7 +232,7 @@ class Contact extends Component {
                     <div className="outer-outer-ring"></div>
                     <div className="circle">
                       <div className="front">
-                        <img className="front-logo" src={this.props.imageLoadedState.linkedinPNG} alt="LINKEDIN" />
+                        <img className="front-logo" src={loadedImgObj.linkedinPNG} alt="LINKEDIN" />
                       </div>
                       <div className="back">
                         <span>LinkedIn</span>
@@ -274,4 +274,4 @@ class Contact extends Component {
   }
 }
 
-export default PageImageLoaded(Contact, imageList);
+export default PageImageLoaded(Contact, imgObj);

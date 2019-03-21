@@ -27,11 +27,12 @@ class About extends Component {
         <div className="about-pic">
           <img src={this.props.AleksPNG} alt="Aleks Quang Trịnh" onClick={this.openLightBox} />
           {this.state.isOpen
-            && <Lightbox
-                  mainSrc={this.props.AleksPNG}
-                  onCloseRequest={this.closeLightBox}
-                  imageCaption="Aleks Quang Trịnh"
-                />
+            &&
+            <Lightbox
+              mainSrc={this.props.AleksPNG}
+              onCloseRequest={this.closeLightBox}
+              imageCaption="Aleks Quang Trịnh"
+            />
           }
         </div>
         <p>

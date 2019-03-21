@@ -18,6 +18,7 @@ import welcomeJPG from './images/welcome.jpg';
 import arrowDownPNG from "./images/arrow_down.png";
 import backgroundJPG from './images/background02.jpg';
 import AleksPNG from "./images/Aleks.png";
+import fePNG from "./images/felogo.png";
 import CSS3 from "./images/CSS3.png";
 import HTML5 from "./images/HTML5.png";
 import JS from "./images/JS.png";
@@ -26,11 +27,12 @@ import Jquery from "./images/Jquery.png";
 import ReactJS from "./images/ReactJS.png";
 //== Media>
 
-const imageList = {
+const imgObj = {
   welcomeJPG,
   arrowDownPNG,
   backgroundJPG,
   AleksPNG,
+  fePNG,
   CSS3,
   HTML5,
   JS,
@@ -40,58 +42,37 @@ const imageList = {
 }
 
 class App extends Component {
-  constructor (props) {
-    super (props);
-    this.state = {
-      scrolled: false
-    };
-  }
-  handleScroll = () => {
-    const isScrolled = Boolean(document.body.scrollTop > 50 || document.documentElement.scrollTop > 50);
-    if (!this.state.scrolled && isScrolled) {
-      this.setState({
-        scrolled: true
-      });
-    }
-    if (this.state.scrolled && !isScrolled) {
-      this.setState({
-        scrolled: false
-      });
-    }
-  }
-  componentDidMount () {
-    window.addEventListener("scroll", this.handleScroll);
-  }
-  componentWillUnmount () {
-    window.removeEventListener("scroll", this.handleScroll);
-  }
+  // constructor (props) {
+  //   super (props);
+  // }
   render() {
+    const loadedImgObj = {...this.props.loadedImgObj};
     return (
       <Fragment>
         {
-          this.props.loadedCheck(imageList, this.props.imageLoadedState)
+          this.props.isPageImgLoaded(imgObj)
           ?
           <div className="App">
-            <Header scrolled={this.state.scrolled} history={this.props.history} />
+            <Header />
             <main>
               <Switch>
                 <Route exact path="/" render={props =>
                     <Fragment>
                       <Welcome
-                        welcomeJPG={this.props.imageLoadedState.welcomeJPG}
-                        arrowDownPNG={this.props.imageLoadedState.arrowDownPNG}
+                        welcomeJPG={loadedImgObj.welcomeJPG}
+                        arrowDownPNG={loadedImgObj.arrowDownPNG}
                       />
                       <About
-                        AleksPNG={this.props.imageLoadedState.AleksPNG}
+                        AleksPNG={loadedImgObj.AleksPNG}
                       />
                       <Skills
-                        backgroundJPG={this.props.imageLoadedState.backgroundJPG}
-                        CSS3={this.props.imageLoadedState.CSS3}
-                        HTML5={this.props.imageLoadedState.HTML5}
-                        JS={this.props.imageLoadedState.JS}
-                        Bootstrap={this.props.imageLoadedState.Bootstrap}
-                        Jquery={this.props.imageLoadedState.Jquery}
-                        ReactJS={this.props.imageLoadedState.ReactJS}
+                        backgroundJPG={loadedImgObj.backgroundJPG}
+                        CSS3={loadedImgObj.CSS3}
+                        HTML5={loadedImgObj.HTML5}
+                        JS={loadedImgObj.JS}
+                        Bootstrap={loadedImgObj.Bootstrap}
+                        Jquery={loadedImgObj.Jquery}
+                        ReactJS={loadedImgObj.ReactJS}
                       />
                       <Button
                         href="/projects/"
@@ -126,8 +107,8 @@ class App extends Component {
               </Switch>
             </main>
             <Footer
-              AleksPNG={this.props.imageLoadedState.AleksPNG}
-              history={this.props.history}
+              AleksPNG={loadedImgObj.AleksPNG}
+              fePNG={loadedImgObj.fePNG}
             />
           </div>
           :
@@ -138,4 +119,4 @@ class App extends Component {
   }
 }
 
-export default PageImageLoaded(App, imageList);
+export default PageImageLoaded(App, imgObj);
