@@ -46,9 +46,9 @@ class App extends Component {
   //   super (props);
   // }
   componentWillMount () {
-    // Fix "#" placed incorrectly when query string is present on load
+    //Fix "#" placed incorrectly when query string is present on load
     if (window.location.search) {
-      window.location.search = "";
+      window.location.href = window.location.href.split("?")[0];
     }
   }
   render() {
