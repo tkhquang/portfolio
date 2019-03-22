@@ -45,6 +45,12 @@ class App extends Component {
   // constructor (props) {
   //   super (props);
   // }
+  componentWillMount () {
+    // Fix "#" placed incorrectly when query string is present on load
+    if (window.location.search) {
+      window.location.search = "";
+    }
+  }
   render() {
     const loadedImgObj = {...this.props.loadedImgObj};
     return (
