@@ -79,7 +79,7 @@ class App extends Component {
                     </Fragment>
                   }
                 />
-                <Route path="/projects/" render={props =>
+                <Route path="/projects/" render={() =>
                     <Fragment>
                       <Projects />
                       <Button
@@ -90,7 +90,7 @@ class App extends Component {
                     </Fragment>
                   }
                 />
-                <Route path="/contact/" render={props =>
+                <Route path="/contact/" render={() =>
                     <Fragment>
                       <Contact />
                       <Button
