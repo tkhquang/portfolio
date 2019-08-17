@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import "./App.css";
 //== <Component
 import Header from "./components/Header";
@@ -42,15 +42,6 @@ const imgObj = {
 }
 
 class App extends Component {
-  // constructor (props) {
-  //   super (props);
-  // }
-  componentWillMount () {
-    // Fix "#" placed incorrectly when query string is present on load
-    if (window.location.search) {
-      window.location.href = window.location.href.split("?")[0];
-    }
-  }
   render() {
     const loadedImgObj = {...this.props.loadedImgObj};
     return (
@@ -62,7 +53,7 @@ class App extends Component {
             <Header />
             <main>
               <Switch>
-                <Route exact path="/" render={props =>
+                <Route exact path="/" render={() =>
                     <Fragment>
                       <Welcome
                         welcomeJPG={loadedImgObj.welcomeJPG}
@@ -109,6 +100,12 @@ class App extends Component {
                       />
                     </Fragment>
                   }
+                />
+                {
+                  // 404 - Not found Redirect
+                }
+                <Route
+                  component={() => <Redirect to="/404" />}
                 />
               </Switch>
             </main>

@@ -1,23 +1,34 @@
-import React from "react";
+import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import { HashRouter } from "react-router-dom";
-import { createBrowserHistory } from "history";
+import { BrowserRouter, withRouter } from "react-router-dom";
+
 import "./index.css";
 import App from "./App";
+import CaptureNoMatch from "./HOCs/CaptureNoMatch";
 import * as serviceWorker from "./serviceWorker";
 
-const history = createBrowserHistory();
-
-history.listen(_ => {
-  window.scrollTo({
-    top: 0
-  });
+// Component to Scroll to Top of the Page everytime location change
+const ScrollToTop = withRouter(class extends Component {
+  componentDidUpdate(prevProps) {
+    if (this.props.location !== prevProps.location) {
+      window.scrollTo({
+        top: 0
+      });
+    }
+  }
+  render() {
+    return this.props.children;
+  }
 });
 
 ReactDOM.render((
-  <HashRouter>
-    <App />
-  </HashRouter>
+  <BrowserRouter>
+    <CaptureNoMatch>
+      <ScrollToTop>
+          <App />
+      </ScrollToTop>
+    </CaptureNoMatch>
+  </BrowserRouter>
 ), document.getElementById("root"));
 
 serviceWorker.unregister();
