@@ -1,0 +1,42 @@
+@import "../styles/mixins";
+
+@include keyframes(loading) {
+  0% {
+    transform: scale(1);
+  }
+  20% {
+    transform: scale(1, 2.2);
+  }
+  40% {
+    transform: scale(1);
+  }
+}
+
+.loading {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 0;
+  .loading-bar {
+    display: inline-block;
+    width: 8px;
+    height: 50px;
+    border-radius: 8px;
+    margin: auto 5px;
+    @include animation("loading 1s ease-in-out infinite");
+    $colors: (
+      0: #3498db,
+      1: #c0392b,
+      2: #f1c40f,
+      3: #27ae60,
+    );
+    @each $idx, $color in $colors {
+      &:nth-child(#{$idx + 1}) {
+        background-color: $color;
+
+        animation-delay: #{$idx * .09}s;
+      }
+    }
+  }
+}
