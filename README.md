@@ -1,3 +1,3 @@
 # Personal Portfolio
 
-## Outdated, visite [tkhquang.dev](https://tkhquang.dev/portfolio) instead!
+## Outdated, visit [tkhquang.dev](https://tkhquang.dev/portfolio) instead!
