@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { NavLink, Link, withRouter } from "react-router-dom";
+
 import "./Header.scss";
 
 class Header extends Component {
@@ -9,17 +10,17 @@ class Header extends Component {
     this.navLinks = [
       {
         exact: true,
-        to: "/",
+        to: "/portfolio/about",
         text: "ABOUT"
       },
       {
-        exact: false,
-        to: "/projects/",
+        exact: true,
+        to: "/portfolio/projects",
         text: "PROJECTS"
       },
       {
-        exact: false,
-        to: "/contact/",
+        exact: true,
+        to: "/portfolio/contact",
         text: "CONTACT"
       },
     ];
@@ -50,7 +51,8 @@ class Header extends Component {
     window.removeEventListener("scroll", this.handleScroll);
   }
   render () {
-    const replaceNeeded = (linkTo) => this.props.location.pathname === linkTo;
+    // Clicking the same link as current location will replace the current entry in the history stack instead of adding a new one.
+    const isCurrentPath = (linkTo) => this.props.location.pathname === linkTo;
     return (
       <header
         className="header"
@@ -58,9 +60,9 @@ class Header extends Component {
       >
         <div className="logo">
           <Link
-            to="/"
+            to="/portfolio/about"
             onClick={this.handleLinkClick}
-            replace={replaceNeeded("/")}
+            replace={isCurrentPath("/portfolio/about")}
           >
             Aleks Quang Trịnh
           </Link>
@@ -74,7 +76,7 @@ class Header extends Component {
                   to={navLink.to}
                   activeClassName="selected"
                   onClick={this.handleLinkClick}
-                  replace={replaceNeeded(navLink.to)}
+                  replace={isCurrentPath(navLink.to)}
                 >
                   {navLink.text}
                 </NavLink>

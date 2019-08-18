@@ -1,13 +1,20 @@
 import React, { Fragment } from "react";
 import { Link, withRouter } from "react-router-dom";
-import "./Footer.scss";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDoubleRight } from "@fortawesome/free-solid-svg-icons";
 import { faFacebook, faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
 
+import "./Footer.scss";
+
 const Footer = (props) => {
   // Open to offer or not
   const status = true;
+  // If opening, will be avaible in X months
+  let availableAhead = 1;
+  if (!status) {
+    availableAhead = 0;
+  }
   const months = [
     "January",
     "February",
@@ -23,7 +30,7 @@ const Footer = (props) => {
     "December"
   ];
   const date = new Date();
-  const month = months[date.getMonth()];
+  const month = months[date.getMonth() + availableAhead];
   const year = date.getFullYear();
   const handleLinkClick = () => {
     if (props.history.location.pathname === props.location.pathname) {
@@ -33,25 +40,26 @@ const Footer = (props) => {
       });
     }
   };
-  const replaceNeeded = (linkTo) => props.location.pathname === linkTo;
+  // Clicking the same link as current location will replace the current entry in the history stack instead of adding a new one.
+  const isCurrentPath = (linkTo) => props.location.pathname === linkTo;
   const bottomNavs = [
     {
-      to: "/",
+      to: "/portfolio/about",
       header: "About",
       content: "Learn about Aleks's background and technical skills"
     },
     {
-      to: "/projects/",
+      to: "/portfolio/projects",
       header: "Portfolio",
       content: "View Aleks's web development projects"
     },
     {
-      to: "/",
+      to: "/portfolio",
       header: "Personal Blog",
       content: "Aleks's personal blog"
     },
     {
-      to: "/contact/",
+      to: "/portfolio/contact",
       header: "Contact",
       content: "Get in touch with Aleks"
     }
@@ -73,11 +81,11 @@ const Footer = (props) => {
                   <p>
                     Available {month} {year}.
                     <Link
-                      to="/contact/"
+                      to="/portfolio/contact"
                       title="Enquire about hiring Aleks"
                       className="hire-button"
                       onClick={handleLinkClick}
-                      replace={replaceNeeded("/contact/")}
+                      replace={isCurrentPath("/portfolio/contact")}
                     >
                       Hire Now
                       <FontAwesomeIcon icon={faAngleDoubleRight} />
@@ -107,16 +115,16 @@ const Footer = (props) => {
               <p>Contact Aleks via <a href="https://www.facebook.com/aleks.trinhquang" target="_blank" rel="noopener noreferrer">Facebook</a> if you have any question</p>
             </li>
             <li>
-              <a href="https://github.com/tkhquang/" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/tkhquang" target="_blank" rel="noopener noreferrer">
                 <FontAwesomeIcon className="social-icon" icon={faGithub} />
               </a>
-              <p>View <a href="https://github.com/tkhquang/" target="_blank" rel="noopener noreferrer">Aleks's profile</a> on GitHub</p>
+              <p>View <a href="https://github.com/tkhquang" target="_blank" rel="noopener noreferrer">Aleks's profile</a> on GitHub</p>
             </li>
             <li>
-              <a href="https://www.linkedin.com/in/quang-trinh-khac-66476517b/" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.linkedin.com/in/quang-trinh-khac-66476517b" target="_blank" rel="noopener noreferrer">
                 <FontAwesomeIcon className="social-icon" icon={faLinkedin} />
               </a>
-              <p>View Aleks's <a href="https://www.linkedin.com/in/quang-trinh-khac-66476517b/" target="_blank" rel="noopener noreferrer">LinkedIn profile</a></p>
+              <p>View Aleks's <a href="https://www.linkedin.com/in/quang-trinh-khac-66476517b" target="_blank" rel="noopener noreferrer">LinkedIn profile</a></p>
             </li>
           </ul>
           <nav className="bottom-nav">
@@ -124,7 +132,7 @@ const Footer = (props) => {
               {bottomNavs.map(({ to, header, content }) => (
                 <Fragment key={header}>
                   <dt>
-                    <Link to={to} onClick={handleLinkClick} replace={replaceNeeded(to)}>
+                    <Link to={to} onClick={handleLinkClick} replace={isCurrentPath(to)}>
                       {header}
                     </Link>
                   </dt>
@@ -137,7 +145,7 @@ const Footer = (props) => {
           </nav>
         </div>
       </div>
-      <small className="footer-copyright">Copyright © {year} <a href="https://github.com/tkhquang/" target="_blank" rel="noopener noreferrer">Aleks Quang Trịnh <FontAwesomeIcon icon={faGithub} /></a>.
+      <small className="footer-copyright">Copyright © {year} <a href="https://github.com/tkhquang" target="_blank" rel="noopener noreferrer">Aleks Quang Trịnh <FontAwesomeIcon icon={faGithub} /></a>.
       </small>
     </footer>
   );

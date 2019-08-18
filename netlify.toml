@@ -19,3 +19,9 @@
 
   ## more info on configuring this file: https://www.netlify.com/docs/netlify-toml-reference/
 
+[context.production.environment]
+  REACT_APP_URL="https://tkhquang.dev"
+[context.deploy-preview.environment]
+  REACT_APP_URL="https://tkhquang.dev"
+[context.branch-deploy.environment]
+  REACT_APP_URL="https://tkhquang.dev"

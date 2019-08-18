@@ -1,33 +1,39 @@
-import React, { Component } from "react";
+import React, { Suspense } from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, withRouter } from "react-router-dom";
+import * as serviceWorker from "serviceWorker";
+
+import {
+  BrowserRouter,
+  Switch,
+  Route,
+  Redirect
+} from "react-router-dom";
+
+import Loading from "components/common/PageLoading";
+import ScrollToTop from "components/ScrollToTop";
 
 import "./index.css";
-import App from "./App";
-import CaptureNoMatch from "./HOCs/CaptureNoMatch";
-import * as serviceWorker from "./serviceWorker";
 
-// Component to Scroll to Top of the Page everytime location change
-const ScrollToTop = withRouter(class extends Component {
-  componentDidUpdate(prevProps) {
-    if (this.props.location !== prevProps.location) {
-      window.scrollTo({
-        top: 0
-      });
-    }
-  }
-  render() {
-    return this.props.children;
-  }
-});
+// const Home = React.lazy(() => import("pages/home/Home"));
+const Portfolio = React.lazy(() => import("pages/portfolio/Portfolio"));
+const NotFound = React.lazy(() => import("pages/NotFound"));
 
 ReactDOM.render((
   <BrowserRouter>
-    <CaptureNoMatch>
-      <ScrollToTop>
-          <App />
-      </ScrollToTop>
-    </CaptureNoMatch>
+    <ScrollToTop>
+      <Suspense fallback={<Loading />}>
+        <Switch>
+          {
+            // Under Construction
+            // <Route exact path="/" component={Home} />
+          }
+          <Redirect exact path="/" to="/portfolio" />
+          <Route path="/portfolio" component={Portfolio} />
+          <Route path="/not-found" component={NotFound}/>
+          <Redirect exact to="/not-found" />
+        </Switch>
+      </Suspense>
+    </ScrollToTop>
   </BrowserRouter>
 ), document.getElementById("root"));
 

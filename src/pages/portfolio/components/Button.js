@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./Button.scss";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronCircleRight } from "@fortawesome/free-solid-svg-icons";
+
+import "./Button.scss";
 
 const Button = (props) => (
   <Link

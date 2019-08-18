@@ -1,4 +1,4 @@
-@import "../styles/mixins";
+@import "~styles/mixins";
 
 .skills {
   clear: left;
@@ -41,22 +41,24 @@
   li {
     flex: 0 0 calc(80% / 3);
     margin: 20px 5px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    img {
-      height: 90px;
-      max-height: 100%;
-      width: auto;
-      margin: auto;
-      @include Responsive(XS) {
-        height: 60px;
+    .skill-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      img {
+        height: 90px;
+        max-height: 100%;
+        width: auto;
+        margin: auto;
+        @include Responsive(XS) {
+          height: 60px;
+        }
       }
-    }
-    span {
-      line-height: 3em;
-      font-weight: bold;
-      text-shadow: 1px 2px 2px #222;
+      span {
+        line-height: 3em;
+        font-weight: bold;
+        text-shadow: 1px 2px 2px #222;
+      }
     }
   }
 }

@@ -1,4 +1,4 @@
-@import "../styles/mixins";
+@import "~styles/mixins";
 
 .projects {
   margin: 76px auto;
@@ -18,7 +18,10 @@
 .project-tile {
   display: flex;
   justify-content: space-around;
-  margin: 50px 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-top: 50px;
+  margin-bottom: 50px;
   overflow: hidden;
   @include Responsive(MD) {
     margin: 50px 20px;

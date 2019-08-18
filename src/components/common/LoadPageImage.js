@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-const PageImageLoaded = (WrappedComponent, imgObj) => class extends Component {
+const LoadPageImage = (WrappedComponent, imgObj) => class extends Component {
   constructor (props) {
     super (props);
     this.state= {};
@@ -44,10 +44,10 @@ const PageImageLoaded = (WrappedComponent, imgObj) => class extends Component {
       <WrappedComponent
         {...this.props }
         isPageImgLoaded={this.isPageImgLoaded}
-        loadedImgObj={this.state}
+        loadedImages={this.state}
       />
     );
   }
 };
 
-export default PageImageLoaded;
+export default LoadPageImage;

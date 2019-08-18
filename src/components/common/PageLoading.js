@@ -1,5 +1,5 @@
 import React from "react";
-import loadingSVG from "../images/pacman-loading.svg";
+import loadingSVG from "resources/portfolio/images/pacman-loading.svg";
 import "./PageLoading.css";
 
 const PageLoading = () => (
