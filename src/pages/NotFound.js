@@ -8,7 +8,9 @@ const NotFound = () => {
         justifyContent: "center",
         alignItems: "center",
         textAlign: "center",
-        minHeight: "100vh"
+        minHeight: "100vh",
+        backgroundImage: "linear-gradient(to bottom, #aad, #ddf)",
+        color: "#234"
       }}
     >
       <h1>

@@ -9,7 +9,7 @@ import {
   Redirect
 } from "react-router-dom";
 
-import Loading from "components/common/PageLoading";
+import PageLoading from "components/common/PageLoading";
 import ScrollToTop from "components/ScrollToTop";
 
 import "./index.css";
@@ -21,7 +21,7 @@ const NotFound = React.lazy(() => import("pages/NotFound"));
 ReactDOM.render((
   <BrowserRouter>
     <ScrollToTop>
-      <Suspense fallback={<Loading />}>
+      <Suspense fallback={<PageLoading />}>
         <Switch>
           {
             // Under Construction
