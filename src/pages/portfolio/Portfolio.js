@@ -1,6 +1,5 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-import { Helmet } from "react-helmet";
 
 import Header from "./components/Header";
 import Welcome from "./components/Welcome";
@@ -41,34 +40,10 @@ const imgObj = {
   ReactJS
 }
 
-const MetaInfo = () => {
-  const desc = "Highly motivated, self-starting developer with a good understanding of HTML5, CSS3, JavaScript and modern JS libraries such as ReactJS, Redux seeking to launch a career building web applications and services.";
-  const title = "Aleks - Front-End Engineer";
-  const url = process.env.REACT_APP_URL + "/portfolio";
-  const imgUrl = url + backgroundJPG;
-  return (
-    <Helmet>
-      <meta key="description" content={desc} />
-      <meta property="og:type" content="website" />
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={desc} />
-      <meta property="og:url" content={url} />
-      <meta property="og:image" content={imgUrl} />
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={desc} />
-      <meta name="twitter:site" content="@holy_quangtk" />
-      <meta name="twitter:creator" content="@holy_quangtk" />
-      <meta name="twitter:image" content={imgUrl} />
-    </Helmet>
-  );
-};
-
 const Portfolio = (props) => {
   const { loadedImages } = props;
   return (
     <>
-      <MetaInfo />
       {
         props.isPageImgLoaded(imgObj)
         ?
