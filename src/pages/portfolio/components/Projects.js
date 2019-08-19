@@ -88,7 +88,7 @@ const Projects = (props) => {
       <section className="projects">
         <h2 className="projects-header">
           {
-            props.isPageImgLoaded(imgObj)
+            props.isImagesLoaded(imgObj)
             ?
             "Projects"
             :
@@ -96,7 +96,7 @@ const Projects = (props) => {
           }
         </h2>
         {
-          props.isPageImgLoaded(imgObj)
+          props.isImagesLoaded(imgObj)
           ?
           <ul className="project-list">
             {projectList.map((project) => (

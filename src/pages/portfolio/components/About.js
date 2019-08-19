@@ -44,7 +44,7 @@ class About extends Component {
           modern JS libraries such as ReactJS, Redux, jQuery,... seeking to launch a career building web applications and
           services. The work I provide is of highest quality, fully responsive, and well-tested in a wide variety of devices. The code I write is easy to maintain because it is clean, concise and ordered.
         </p>
-        <p>Do not hesitate to get in touch with me if you are looking for a developer who can provide:</p>
+        <p>Do not hesitate to get in touch with me if you are looking for an Engineer who can provide:</p>
         <ul>
           <li>Semantic HTML/Responsive CSS</li>
           <li>JavaScript (Vanilla, jQuery, ReactJS,...)</li>

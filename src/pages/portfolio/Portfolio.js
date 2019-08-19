@@ -1,5 +1,6 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 import Header from "./components/Header";
 import Welcome from "./components/Welcome";
@@ -9,6 +10,7 @@ import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
+import withTracker from "components/common/withTracker";
 import PageLoading from "components/common/PageLoading";
 import LoadPageImage from "components/common/LoadPageImage";
 
@@ -24,7 +26,7 @@ import Bootstrap from "resources/portfolio/images/Bootstrap.png";
 import Jquery from "resources/portfolio/images/Jquery.png";
 import ReactJS from "resources/portfolio/images/ReactJS.png";
 
-import "./Portfolio.css";
+import "./Portfolio.scss";
 
 const imgObj = {
   welcomeJPG,
@@ -40,55 +42,62 @@ const imgObj = {
   ReactJS
 }
 
-const Portfolio = (props) => {
-  const { loadedImages } = props;
+const Portfolio = ({ loadedImages, isImagesLoaded, location }) => {
   return (
     <>
       {
-        props.isPageImgLoaded(imgObj)
+        isImagesLoaded(imgObj)
         ?
         <div className="Portfolio">
           <Header />
-          <main>
-            <Switch>
-              <Redirect exact path="/portfolio" to="/portfolio/about" />
-              <Route
-                exact
-                path="/portfolio/about"
-                render={() =>
-                  <>
-                    <Welcome
-                      welcomeJPG={loadedImages.welcomeJPG}
-                      arrowDownPNG={loadedImages.arrowDownPNG}
-                    />
-                    <About
-                      AleksPNG={loadedImages.AleksPNG}
-                    />
-                    <Skills
-                      backgroundJPG={loadedImages.backgroundJPG}
-                      CSS3={loadedImages.CSS3}
-                      HTML5={loadedImages.HTML5}
-                      JS={loadedImages.JS}
-                      Bootstrap={loadedImages.Bootstrap}
-                      Jquery={loadedImages.Jquery}
-                      ReactJS={loadedImages.ReactJS}
-                    />
-                  </>
-                }
-              />
-              <Route
-                exact
-                path="/portfolio/projects"
-                component={Projects}
-              />
-              <Route
-                exact
-                path="/portfolio/contact"
-                component={Contact}
-              />
-              <Redirect to="/not-found" />
-            </Switch>
-          </main>
+          <TransitionGroup className="transition-group">
+            <CSSTransition
+              key={location.pathname}
+              timeout={{ enter: 300, exit: 300 }}
+              classNames="fade"
+            >
+              <main>
+                <Switch>
+                  <Redirect exact path="/portfolio" to="/portfolio/about" />
+                  <Route
+                    exact
+                    path="/portfolio/about"
+                    component={() =>
+                      <>
+                        <Welcome
+                          welcomeJPG={loadedImages.welcomeJPG}
+                          arrowDownPNG={loadedImages.arrowDownPNG}
+                        />
+                        <About
+                          AleksPNG={loadedImages.AleksPNG}
+                        />
+                        <Skills
+                          backgroundJPG={loadedImages.backgroundJPG}
+                          CSS3={loadedImages.CSS3}
+                          HTML5={loadedImages.HTML5}
+                          JS={loadedImages.JS}
+                          Bootstrap={loadedImages.Bootstrap}
+                          Jquery={loadedImages.Jquery}
+                          ReactJS={loadedImages.ReactJS}
+                        />
+                      </>
+                    }
+                  />
+                  <Route
+                    exact
+                    path="/portfolio/projects"
+                    component={Projects}
+                  />
+                  <Route
+                    exact
+                    path="/portfolio/contact"
+                    component={Contact}
+                  />
+                  <Redirect to="/not-found" />
+                </Switch>
+              </main>
+            </CSSTransition>
+          </TransitionGroup>
           <Footer
             AleksPNG={loadedImages.AleksPNG}
             fePNG={loadedImages.fePNG}
@@ -101,4 +110,4 @@ const Portfolio = (props) => {
   );
 };
 
-export default LoadPageImage(Portfolio, imgObj);
+export default LoadPageImage(withTracker(Portfolio), imgObj);

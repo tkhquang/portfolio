@@ -23,7 +23,7 @@ const Welcome = (props) => {
       </div>
       <div className="welcome-text">
           <p className="top">
-            I am a Front-End Developer
+            I am a Front-End Engineer
           </p>
           <p className="bottom">
             I love building websites that <span>{"function"}</span> yet remain <span>minimalist</span>

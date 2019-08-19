@@ -16,7 +16,7 @@ const LoadPageImage = (WrappedComponent, imgObj) => class extends Component {
       [image]: src
     });
   }
-  isPageImgLoaded = (imgObj) => {
+  isImagesLoaded = (imgObj) => {
     const isEmpty = (str) => (!str || 0 === str.length);
     const checkList = [];
     Object.keys(imgObj).forEach((imgName) => {
@@ -43,7 +43,7 @@ const LoadPageImage = (WrappedComponent, imgObj) => class extends Component {
     return (
       <WrappedComponent
         {...this.props }
-        isPageImgLoaded={this.isPageImgLoaded}
+        isImagesLoaded={this.isImagesLoaded}
         loadedImages={this.state}
       />
     );

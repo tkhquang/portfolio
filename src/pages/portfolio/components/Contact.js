@@ -4,8 +4,8 @@ import ReCAPTCHA from "react-google-recaptcha";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faPaperPlane, faCheckCircle, faExclamationCircle  } from "@fortawesome/free-solid-svg-icons";
 
-import LoadPageImage from "components/common/LoadPageImage";
 import Loading from "components/common/Loading";
+import LoadPageImage from "components/common/LoadPageImage";
 
 import Button from "./Button";
 
@@ -173,7 +173,7 @@ class Contact extends Component {
         <section className="contact">
           <h2 className="contact-header">
             {
-              this.props.isPageImgLoaded(imgObj)
+              this.props.isImagesLoaded(imgObj)
               ?
               "Contact"
               :
@@ -181,7 +181,7 @@ class Contact extends Component {
             }
           </h2>
           {
-            this.props.isPageImgLoaded(imgObj)
+            this.props.isImagesLoaded(imgObj)
             ?
             <Fragment>
               <h3 className="contact-lead">Interested in working with me? You can reach out to me via...</h3>

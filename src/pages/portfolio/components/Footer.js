@@ -75,7 +75,7 @@ const Footer = (props) => {
             </div>
             <div className="bio">
                 <p className="bio-info">Highly motivated, self-starting developer with a good understanding of HTML, CSS, JavaScript and modern JS libraries such as ReactJS, Redux, jQuery,... seeking to launch a career building web applications and services.</p>
-                <p>Front-end Developer.</p>
+                <p>Front-end Engineer.</p>
                 {status
                   ?
                   <p>
