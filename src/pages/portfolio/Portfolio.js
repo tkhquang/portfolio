@@ -62,7 +62,7 @@ const Portfolio = ({ loadedImages, isImagesLoaded, location }) => {
                   <Route
                     exact
                     path="/portfolio/about"
-                    component={() =>
+                    render={() =>
                       <>
                         <Welcome
                           welcomeJPG={loadedImages.welcomeJPG}

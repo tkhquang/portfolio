@@ -7,31 +7,38 @@ import { faFacebook, faLinkedin, faGithub } from "@fortawesome/free-brands-svg-i
 
 import "./Footer.scss";
 
+const getFormattedDate = (obj, d, m, y) => {
+  let date = new Date(obj.getTime());
+  date.setDate(d);
+  // Remember that 0 is January
+  date.setMonth(m - 1);
+  date.setFullYear(y)
+  return date;
+};
+
+const months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December"
+];
+
 const Footer = (props) => {
-  // Open to offer or not
-  const status = true;
-  // If opening, will be avaible in X months
-  let availableAhead = 1;
-  if (!status) {
-    availableAhead = 0;
-  }
-  const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December"
-  ];
-  const date = new Date();
-  const month = months[date.getMonth() + availableAhead];
-  const year = date.getFullYear();
+  const now = new Date();
+  // Will be avaible from that day,
+  const openDay = getFormattedDate(now, 1, 9, 2019);
+
+  const status = Boolean(openDay.getTime() > now.getTime());
+  const month = months[openDay.getMonth()];
+  const year = openDay.getFullYear();
   const handleLinkClick = () => {
     if (props.history.location.pathname === props.location.pathname) {
       window.scrollTo({
@@ -93,7 +100,7 @@ const Footer = (props) => {
                   </p>
                   :
                   <p style={{color: "red"}}>
-                    NOT Available {month} {year}.
+                    Currently NOT Available.
                     <button
                       className="hire-button"
                       type="button" title="Aleks is currently not open to offers"
